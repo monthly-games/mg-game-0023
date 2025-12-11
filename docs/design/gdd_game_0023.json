@@ -1,0 +1,273 @@
+{
+  "meta": {
+    "game_id": "game_0023",
+    "code_name": "MG-0023",
+    "title_kr": "콜로니 프론티어",
+    "title_en": "Colony Frontier",
+    "version": "0.1.0",
+    "last_updated": "2026-05-01"
+  },
+  "overview": {
+    "genre_tags": ["colony", "idle", "survival", "simulation", "strategy"],
+    "target_audience": {
+      "age": "20-45",
+      "region": ["Global", "KR"],
+      "play_style": "core to hardcore"
+    },
+    "core_loop": "미개척 행성에 콜로니를 건설하고, 자원을 생산하며, 생존 위협을 관리하고, 새로운 행성을 탐사한다",
+    "unique_selling_point": "깊이 있는 생산 체인과 생존 메커니즘, 하드코어 전략 게임의 방치형 적용",
+    "year_2_role": "하드코어/코어 게이머 겨냥 깊이 있는 구조 실험"
+  },
+  "gameplay": {
+    "core_mechanics": [
+      {
+        "name": "콜로니 건설",
+        "description": "다양한 시설을 건설하여 생산, 거주, 연구 인프라 구축"
+      },
+      {
+        "name": "자원 생산 체인",
+        "description": "복잡한 생산 라인 구성 (원자재 → 가공 → 고급 제품)"
+      },
+      {
+        "name": "생존 관리",
+        "description": "산소, 식량, 에너지, 온도 등 생존 지표 관리"
+      },
+      {
+        "name": "방치 생산",
+        "description": "오프라인 시간 동안 자동 생산 및 소비"
+      },
+      {
+        "name": "행성 탐사",
+        "description": "새로운 행성 발견 및 개척, 각 행성별 고유 자원과 도전"
+      },
+      {
+        "name": "연구 트리",
+        "description": "과학 연구를 통한 기술 발전 및 새로운 건물/기능 해금"
+      },
+      {
+        "name": "재난 대응",
+        "description": "운석, 폭풍, 질병 등 예측 불가 이벤트 대처"
+      }
+    ],
+    "progression": {
+      "type": "multi_planet",
+      "description": "행성별 콜로니 발전 → 새 행성 해금 → 메타 업그레이드"
+    },
+    "session_length": "10-30분 (전략 수립, 최적화), 1-3분 (수확, 업그레이드)"
+  },
+  "colony_system": {
+    "building_categories": [
+      {
+        "category": "production",
+        "name": "생산 시설",
+        "buildings": ["광산", "농장", "공장", "정제소", "제조소"]
+      },
+      {
+        "category": "infrastructure",
+        "name": "인프라",
+        "buildings": ["거주동", "발전소", "산소 생성기", "물 재활용", "저장고"]
+      },
+      {
+        "category": "research",
+        "name": "연구",
+        "buildings": ["연구소", "천문대", "데이터센터"]
+      },
+      {
+        "category": "defense",
+        "name": "방어",
+        "buildings": ["방어 타워", "실드 생성기", "경보 시스템"]
+      },
+      {
+        "category": "special",
+        "name": "특수",
+        "buildings": ["우주항", "텔레포터", "거대 건축물"]
+      }
+    ],
+    "production_chains": {
+      "example_basic": {
+        "chain": ["철광석 채굴 → 철괴 제련 → 강철 생산 → 건축 자재"],
+        "buildings_required": ["광산", "용광로", "공장", "조립소"]
+      },
+      "example_advanced": {
+        "chain": ["실리콘 채굴 → 정제 → 칩 제조 → 컴퓨터 조립 → AI 유닛"],
+        "buildings_required": ["특수 광산", "정제소", "하이테크 공장", "AI 연구소"]
+      }
+    },
+    "population_management": {
+      "colonists": {
+        "needs": ["식량", "산소", "거주 공간", "행복도"],
+        "roles": ["노동자", "엔지니어", "과학자", "군인"],
+        "efficiency": "행복도와 역할 배치에 따라 생산성 변화"
+      }
+    }
+  },
+  "survival_system": {
+    "vital_resources": [
+      {
+        "resource": "oxygen",
+        "generation": "산소 생성기",
+        "consumption": "인구수 기반",
+        "critical_level": "below 20%",
+        "failure_consequence": "colonist health decline"
+      },
+      {
+        "resource": "food",
+        "generation": "농장, 수경재배",
+        "consumption": "인구수 기반",
+        "storage": "cold storage",
+        "failure_consequence": "starvation, death"
+      },
+      {
+        "resource": "energy",
+        "generation": "태양광, 원자로, 지열",
+        "consumption": "모든 건물",
+        "failure_consequence": "building shutdown"
+      },
+      {
+        "resource": "water",
+        "generation": "빙하 채굴, 재활용",
+        "consumption": "농업, 산소 생성",
+        "failure_consequence": "cascade failure"
+      }
+    ],
+    "environmental_hazards": [
+      {
+        "hazard": "meteor_shower",
+        "frequency": "random",
+        "impact": "building damage, colonist casualties",
+        "mitigation": "defense towers, shields"
+      },
+      {
+        "hazard": "solar_storm",
+        "frequency": "periodic",
+        "impact": "power outage, electronics damage",
+        "mitigation": "backup power, shielding"
+      },
+      {
+        "hazard": "extreme_temperature",
+        "frequency": "seasonal",
+        "impact": "increased energy consumption",
+        "mitigation": "insulation upgrades"
+      },
+      {
+        "hazard": "disease_outbreak",
+        "frequency": "low chance",
+        "impact": "population reduction, productivity loss",
+        "mitigation": "medical facilities, quarantine"
+      }
+    ]
+  },
+  "planet_exploration": {
+    "planet_types": [
+      {
+        "type": "desert",
+        "name": "사막 행성",
+        "difficulty": "easy",
+        "resources": ["철", "실리콘", "태양 에너지"],
+        "challenges": ["물 부족", "극심한 온도차"]
+      },
+      {
+        "type": "ice",
+        "name": "빙하 행성",
+        "difficulty": "medium",
+        "resources": ["물", "희귀 광물", "헬륨-3"],
+        "challenges": ["극저온", "눈보라"]
+      },
+      {
+        "type": "volcanic",
+        "name": "화산 행성",
+        "difficulty": "hard",
+        "resources": ["지열 에너지", "귀금속", "특수 광석"],
+        "challenges": ["화산 폭발", "유독 가스", "지진"]
+      },
+      {
+        "type": "gas_giant_moon",
+        "name": "가스 행성 위성",
+        "difficulty": "extreme",
+        "resources": ["헬륨-3", "반물질", "exotic matter"],
+        "challenges": ["중력 이상", "방사능", "극한 압력"]
+      }
+    ],
+    "exploration_mechanics": {
+      "probe_launch": "자원 소모하여 프로브 발사",
+      "planet_discovery": "랜덤 행성 타입 발견",
+      "colonization_prep": "초기 자원 투자 필요",
+      "planet_bonuses": "특정 행성에서만 생산 가능한 고급 자원"
+    }
+  },
+  "research_tree": {
+    "categories": [
+      {
+        "category": "engineering",
+        "techs": ["건물 효율 +%", "저장 용량 증가", "자동화 시스템", "거대 건축"]
+      },
+      {
+        "category": "science",
+        "techs": ["새 자원 발견", "생산 체인 최적화", "AI 관리", "양자 컴퓨팅"]
+      },
+      {
+        "category": "survival",
+        "techs": ["생명 유지 효율", "재난 예측", "방어 강화", "의료 기술"]
+      },
+      {
+        "category": "exploration",
+        "techs": ["우주선 업그레이드", "프로브 효율", "워프 기술", "다중 행성 관리"]
+      }
+    ],
+    "progression": "prerequisite tree structure, research points from labs"
+  },
+  "economy": {
+    "currencies": [
+      {
+        "name": "크레딧",
+        "type": "soft",
+        "sources": ["자원 판매", "무역", "계약 완료"],
+        "sinks": ["건물 건설", "업그레이드", "긴급 구매"]
+      },
+      {
+        "name": "연구 포인트",
+        "type": "progression",
+        "sources": ["연구소 생산", "발견", "업적"],
+        "sinks": ["기술 연구", "특수 프로젝트"]
+      },
+      {
+        "name": "나노바이트",
+        "type": "hard",
+        "sources": ["인앱 구매", "행성 완료", "이벤트"],
+        "sinks": ["시간 단축", "프리미엄 건물", "재난 복구"]
+      }
+    ],
+    "resources": {
+      "basic": ["철", "구리", "실리콘", "물", "식량"],
+      "advanced": ["강철", "전자부품", "플라스틱", "연료"],
+      "rare": ["티타늄", "플래티넘", "우라늄", "희토류"],
+      "exotic": ["반물질", "다크 매터", "시간 결정"]
+    },
+    "monetization": {
+      "model": "F2P + IAP (premium)",
+      "iap_items": ["나노바이트 패키지", "프리미엄 패스", "건축가 팩", "탐험가 팩"],
+      "ad_placements": ["보상형 광고 (생산 부스트)", "선택형 광고 (재난 보험)"]
+    }
+  },
+  "technical": {
+    "platform": ["Android", "iOS", "PC (Steam)"],
+    "engine": "Flutter + Flame",
+    "backend": "Firebase + Custom Simulation Server",
+    "analytics": "GA4 + BigQuery + Production Chain Analytics",
+    "save_system": "Cloud Save + Local Backup"
+  },
+  "common_modules": {
+    "production_chain_engine": {
+      "description": "복잡한 생산 체인 시뮬레이션 엔진",
+      "features": ["자원 흐름 계산", "병목 현상 감지", "최적화 제안", "밸런싱"]
+    },
+    "survival_simulation": {
+      "description": "생존 지표 시뮬레이션 시스템",
+      "features": ["실시간 소비/생산", "위험 예측", "자동 경고", "비상 프로토콜"]
+    },
+    "planet_generation": {
+      "description": "절차적 행성 생성 시스템",
+      "features": ["시드 기반 생성", "자원 배치", "난이도 밸런싱", "고유성 보장"]
+    }
+  }
+}

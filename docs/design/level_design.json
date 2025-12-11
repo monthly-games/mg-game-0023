@@ -1,0 +1,242 @@
+{
+  "version": "0.1.0",
+  "planets": [
+    {
+      "planet_id": 1,
+      "name": "마르스 프라임",
+      "type": "desert",
+      "difficulty": 1,
+      "unlock_condition": "starting planet",
+      "environment": {
+        "temperature": "-60°C to 20°C",
+        "atmosphere": "thin CO2",
+        "gravity": "0.38G",
+        "day_length": "24.6 hours"
+      },
+      "resources": {
+        "abundant": ["iron", "silicon", "solar_energy"],
+        "scarce": ["water", "organic_material"],
+        "rare": []
+      },
+      "challenges": [
+        "water scarcity",
+        "dust storms (weekly)",
+        "extreme temperature swings"
+      ],
+      "milestones": [
+        {
+          "milestone": "population_100",
+          "reward": { "credits": 50000, "research_points": 500 }
+        },
+        {
+          "milestone": "self_sufficient",
+          "reward": { "credits": 100000, "nanobytes": 500, "unlock": "planet_2" }
+        },
+        {
+          "milestone": "megacity",
+          "reward": { "credits": 500000, "nanobytes": 2000, "special_building": "terraform_station" }
+        }
+      ]
+    },
+    {
+      "planet_id": 2,
+      "name": "유로파 스테이션",
+      "type": "ice",
+      "difficulty": 3,
+      "unlock_condition": "planet_1_self_sufficient",
+      "environment": {
+        "temperature": "-160°C to -220°C",
+        "atmosphere": "none",
+        "gravity": "0.13G",
+        "day_length": "85 hours"
+      },
+      "resources": {
+        "abundant": ["water_ice", "rare_minerals"],
+        "scarce": ["energy"],
+        "rare": ["helium3"]
+      },
+      "challenges": [
+        "extreme cold",
+        "radiation from Jupiter",
+        "ice quakes",
+        "subsurface ocean access difficulty"
+      ],
+      "milestones": [
+        {
+          "milestone": "ice_drilling_complete",
+          "reward": { "credits": 100000, "research_points": 1000 }
+        },
+        {
+          "milestone": "ocean_access",
+          "reward": { "credits": 250000, "nanobytes": 1000, "unlock": "aquatic_farming" }
+        },
+        {
+          "milestone": "colony_thriving",
+          "reward": { "credits": 500000, "nanobytes": 2500, "unlock": "planet_3" }
+        }
+      ]
+    },
+    {
+      "planet_id": 3,
+      "name": "이오 벌칸",
+      "type": "volcanic",
+      "difficulty": 6,
+      "unlock_condition": "planet_2_colony_thriving",
+      "environment": {
+        "temperature": "-143°C to 1,500°C",
+        "atmosphere": "sulfur dioxide",
+        "gravity": "0.18G",
+        "day_length": "42 hours"
+      },
+      "resources": {
+        "abundant": ["geothermal_energy", "sulfur", "precious_metals"],
+        "scarce": ["water", "organic"],
+        "rare": ["platinum", "iridium", "exotic_minerals"]
+      },
+      "challenges": [
+        "volcanic eruptions (random)",
+        "toxic atmosphere",
+        "extreme heat zones",
+        "tidal heating instability",
+        "high radiation"
+      ],
+      "milestones": [
+        {
+          "milestone": "first_eruption_survival",
+          "reward": { "credits": 200000, "research_points": 2000 }
+        },
+        {
+          "milestone": "precious_metal_operation",
+          "reward": { "credits": 500000, "nanobytes": 3000 }
+        },
+        {
+          "milestone": "volcano_taming",
+          "reward": { "credits": 1000000, "nanobytes": 5000, "unlock": "planet_4" }
+        }
+      ]
+    },
+    {
+      "planet_id": 4,
+      "name": "타이탄 시티",
+      "type": "gas_giant_moon",
+      "difficulty": 9,
+      "unlock_condition": "planet_3_volcano_taming",
+      "environment": {
+        "temperature": "-179°C",
+        "atmosphere": "thick nitrogen + methane",
+        "gravity": "0.14G",
+        "day_length": "16 days"
+      },
+      "resources": {
+        "abundant": ["hydrocarbons", "nitrogen", "helium3"],
+        "scarce": ["metals"],
+        "rare": ["antimatter_traces", "exotic_compounds"]
+      },
+      "challenges": [
+        "methane lakes and rain",
+        "low visibility",
+        "cryovolcanoes",
+        "complex atmospheric chemistry",
+        "extreme isolation"
+      ],
+      "milestones": [
+        {
+          "milestone": "methane_processing",
+          "reward": { "credits": 500000, "research_points": 5000 }
+        },
+        {
+          "milestone": "helium3_harvesting",
+          "reward": { "credits": 1000000, "nanobytes": 10000, "unlock": "fusion_reactor" }
+        },
+        {
+          "milestone": "titan_metropolis",
+          "reward": { "credits": 2000000, "nanobytes": 20000, "unlock": "interstellar_tech" }
+        }
+      ]
+    }
+  ],
+  "building_progression": {
+    "tier_1": {
+      "unlock_level": 0,
+      "buildings": ["basic_habitat", "solar_panel", "water_extractor", "small_farm", "basic_mine"],
+      "max_level": 10
+    },
+    "tier_2": {
+      "unlock_level": 10,
+      "buildings": ["advanced_habitat", "wind_turbine", "ice_drill", "hydroponic_farm", "enhanced_mine"],
+      "max_level": 20
+    },
+    "tier_3": {
+      "unlock_level": 25,
+      "buildings": ["dome_city", "geothermal_plant", "water_synthesizer", "vertical_farm", "deep_mine"],
+      "max_level": 30
+    },
+    "tier_4": {
+      "unlock_level": 50,
+      "buildings": ["mega_habitat", "fusion_reactor", "atmospheric_processor", "bio_dome", "asteroid_mining"],
+      "max_level": 50
+    },
+    "tier_5": {
+      "unlock_level": 100,
+      "buildings": ["arcology", "antimatter_reactor", "terraform_engine", "genetic_lab", "quantum_mining"],
+      "max_level": 100
+    }
+  },
+  "research_progression": {
+    "phase_1": {
+      "focus": "survival basics",
+      "key_techs": ["oxygen_efficiency", "food_production", "solar_power", "basic_automation"],
+      "duration": "early game"
+    },
+    "phase_2": {
+      "focus": "expansion",
+      "key_techs": ["advanced_materials", "nuclear_power", "robotics", "planet_scanning"],
+      "duration": "mid game"
+    },
+    "phase_3": {
+      "focus": "optimization",
+      "key_techs": ["AI_management", "quantum_computing", "fusion_energy", "megastructures"],
+      "duration": "late game"
+    },
+    "phase_4": {
+      "focus": "transcendence",
+      "key_techs": ["antimatter_power", "warp_drive", "terraforming", "artificial_gravity"],
+      "duration": "end game"
+    }
+  },
+  "disaster_schedule": {
+    "common": {
+      "meteor_shower": { "frequency": "7-14 days", "severity": "low to medium" },
+      "dust_storm": { "frequency": "5-10 days", "severity": "low" },
+      "equipment_failure": { "frequency": "random", "severity": "low to medium" }
+    },
+    "uncommon": {
+      "solar_storm": { "frequency": "30-60 days", "severity": "medium to high" },
+      "earthquake": { "frequency": "20-40 days", "severity": "medium" },
+      "disease_outbreak": { "frequency": "60-90 days", "severity": "medium to high" }
+    },
+    "rare": {
+      "volcanic_eruption": { "frequency": "90-180 days", "severity": "high", "planet_specific": ["volcanic"] },
+      "megastorm": { "frequency": "120-240 days", "severity": "extreme" },
+      "alien_contact": { "frequency": "random", "severity": "varies", "special_event": true }
+    }
+  },
+  "win_conditions": {
+    "survival_mode": {
+      "goal": "survive 365 days on each planet",
+      "rewards": "completion bonus + special achievement"
+    },
+    "expansion_mode": {
+      "goal": "colonize all 4 planets with 1000+ population each",
+      "rewards": "grand achievement + exclusive content"
+    },
+    "economic_victory": {
+      "goal": "accumulate 10,000,000 credits",
+      "rewards": "economic tycoon title"
+    },
+    "scientific_victory": {
+      "goal": "complete all research tiers",
+      "rewards": "scientist supreme title + warp drive unlock"
+    }
+  }
+}

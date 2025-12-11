@@ -1,0 +1,243 @@
+{
+  "version": "0.1.0",
+  "currencies": {
+    "credits": {
+      "display_name": "크레딧",
+      "icon": "assets/icons/credit.png",
+      "initial_amount": 10000,
+      "sources": {
+        "resource_sale": {
+          "iron": 10,
+          "steel": 50,
+          "electronics": 200,
+          "ai_unit": 1000
+        },
+        "trade_contracts": {
+          "basic": 5000,
+          "advanced": 20000,
+          "rare": 100000
+        },
+        "idle_production": {
+          "base_per_hour": 500,
+          "colony_level_multiplier": 1.1,
+          "max_offline_hours": 24
+        }
+      },
+      "sinks": {
+        "building_construction": {
+          "tier_1": 1000,
+          "tier_2": 5000,
+          "tier_3": 25000,
+          "tier_4": 100000,
+          "tier_5": 500000
+        },
+        "building_upgrade": {
+          "base_cost": 500,
+          "level_multiplier": 1.8
+        },
+        "emergency_purchase": {
+          "food": 100,
+          "oxygen": 150,
+          "energy": 80,
+          "water": 120
+        }
+      }
+    },
+    "research_points": {
+      "display_name": "연구 포인트",
+      "icon": "assets/icons/research.png",
+      "initial_amount": 100,
+      "sources": {
+        "research_lab": {
+          "base_per_hour": 10,
+          "scientist_multiplier": 1.5,
+          "lab_level_multiplier": 1.3
+        },
+        "discovery": {
+          "new_resource": 100,
+          "new_planet": 500,
+          "rare_event": 1000
+        },
+        "achievement": "varied"
+      },
+      "sinks": {
+        "technology_research": {
+          "tier_1": 50,
+          "tier_2": 200,
+          "tier_3": 1000,
+          "tier_4": 5000,
+          "tier_5": 25000
+        },
+        "special_project": {
+          "megastructure": 50000,
+          "warp_drive": 100000
+        }
+      }
+    },
+    "nanobytes": {
+      "display_name": "나노바이트",
+      "icon": "assets/icons/nanobyte.png",
+      "initial_amount": 500,
+      "iap_packages": [
+        { "nanobytes": 500, "price_usd": 0.99 },
+        { "nanobytes": 2500, "price_usd": 4.99, "bonus": 250 },
+        { "nanobytes": 6000, "price_usd": 9.99, "bonus": 1000 },
+        { "nanobytes": 15000, "price_usd": 19.99, "bonus": 3000 },
+        { "nanobytes": 40000, "price_usd": 49.99, "bonus": 10000 },
+        { "nanobytes": 100000, "price_usd": 99.99, "bonus": 30000 }
+      ],
+      "sources": {
+        "planet_completion": 1000,
+        "milestone_achievement": "varied",
+        "event": "varied"
+      },
+      "sinks": {
+        "time_skip": {
+          "1_hour": 50,
+          "4_hours": 150,
+          "12_hours": 300,
+          "24_hours": 500
+        },
+        "premium_buildings": "1000-5000",
+        "disaster_recovery": {
+          "instant_repair": 200,
+          "restore_population": 300,
+          "emergency_resources": 150
+        },
+        "expansion_slots": {
+          "building_slot": 500,
+          "storage_expansion": 300,
+          "population_cap": 800
+        }
+      }
+    }
+  },
+  "resources": {
+    "basic": {
+      "iron_ore": {
+        "production_rate": "10/hour (basic mine)",
+        "storage_limit": 10000,
+        "uses": ["steel production", "construction"]
+      },
+      "silicon": {
+        "production_rate": "8/hour (special mine)",
+        "storage_limit": 5000,
+        "uses": ["electronics", "solar panels"]
+      },
+      "water": {
+        "production_rate": "20/hour (glacier mining)",
+        "storage_limit": 20000,
+        "uses": ["oxygen generation", "farming", "population"]
+      },
+      "food": {
+        "production_rate": "15/hour (farm)",
+        "storage_limit": 10000,
+        "uses": ["population consumption"]
+      }
+    },
+    "advanced": {
+      "steel": {
+        "production_chain": "iron_ore + energy → steel",
+        "production_rate": "5/hour (smelter)",
+        "uses": ["advanced construction", "ship building"]
+      },
+      "electronics": {
+        "production_chain": "silicon + copper → electronics",
+        "production_rate": "3/hour (factory)",
+        "uses": ["research", "automation", "AI"]
+      },
+      "fuel": {
+        "production_chain": "oil/hydrogen + refinement",
+        "production_rate": "10/hour (refinery)",
+        "uses": ["energy generation", "rocket fuel"]
+      }
+    },
+    "rare": {
+      "titanium": {
+        "production": "rare deposits only",
+        "production_rate": "1/hour (advanced mine)",
+        "uses": ["megastructures", "advanced ship"]
+      },
+      "helium3": {
+        "production": "gas giant moons only",
+        "production_rate": "0.5/hour (gas harvester)",
+        "uses": ["fusion reactor", "warp drive"]
+      },
+      "uranium": {
+        "production": "specific planets",
+        "production_rate": "0.3/hour (uranium mine)",
+        "uses": ["nuclear reactor", "weapons"]
+      }
+    }
+  },
+  "production_efficiency": {
+    "base_rate": 1.0,
+    "multipliers": {
+      "colonist_happiness": "0.5x - 1.5x",
+      "technology_upgrades": "up to 3.0x",
+      "building_level": "1.1x per level",
+      "planet_bonuses": "1.2x - 2.0x",
+      "disaster_penalty": "0.3x - 0.7x"
+    }
+  },
+  "trade_system": {
+    "trade_routes": {
+      "internal": {
+        "description": "행성 간 자원 이동",
+        "cost": "transport fuel",
+        "speed": "instant to 1 hour"
+      },
+      "external": {
+        "description": "NPC 상인과 거래",
+        "availability": "random visits",
+        "exchange_rates": "market-based, fluctuating"
+      }
+    },
+    "contracts": {
+      "delivery_contract": {
+        "requirement": "deliver X resources",
+        "reward": "credits + reputation",
+        "time_limit": "24-72 hours"
+      },
+      "research_contract": {
+        "requirement": "complete specific research",
+        "reward": "credits + rare resources",
+        "difficulty": "varies"
+      }
+    }
+  },
+  "premium_features": {
+    "builder_subscription": {
+      "cost": { "currency": "usd", "amount": 4.99, "period": "monthly" },
+      "benefits": [
+        "construction time -50%",
+        "additional building queue slot",
+        "offline production +50%",
+        "daily nanobytes +100"
+      ]
+    },
+    "premium_pass": {
+      "cost": { "currency": "nanobytes", "amount": 2000 },
+      "duration_days": 30,
+      "rewards": {
+        "exclusive_buildings": true,
+        "premium_resources": true,
+        "special_colonists": true
+      }
+    }
+  },
+  "disaster_costs": {
+    "meteor_damage": {
+      "repair_cost": "10-50% of building value",
+      "instant_repair": { "currency": "nanobytes", "amount": 200 }
+    },
+    "population_loss": {
+      "recovery_time": "24-48 hours",
+      "instant_recovery": { "currency": "nanobytes", "amount": 300 }
+    },
+    "resource_loss": {
+      "percentage": "5-20% of storage",
+      "insurance": { "currency": "credits_daily", "amount": 1000 }
+    }
+  }
+}
