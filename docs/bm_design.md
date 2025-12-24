@@ -1,7 +1,13 @@
-# 콜로니 프론티어 - BM 설계 문서
+﻿# 콜로니 프론티어 - BM 설계 문서
 
 > game_id: game_0023
 > repo: mg-game-0023
+> title_kr: 콜로니 프론티어
+> title_en: Colony Frontier
+> genre_tags: colony, idle, survival, simulation, strategy
+> doc_type: bm_design
+> source_of_truth: docs/design/gdd_game_0023.json
+> last_updated: 2025-12-19
 
 ---
 

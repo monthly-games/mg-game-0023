@@ -1,4 +1,13 @@
-# game_0023 수익화 전략 - 콜로니 프론티어
+﻿# game_0023 수익화 전략 - 콜로니 프론티어
+
+> game_id: game_0023
+> repo: mg-game-0023
+> title_kr: 콜로니 프론티어
+> title_en: Colony Frontier
+> genre_tags: colony, idle, survival, simulation, strategy
+> doc_type: monetization_design
+> source_of_truth: docs/design/gdd_game_0023.json
+> last_updated: 2025-12-19
 
 ## 게임 개요
 - **장르**: 우주 식민지 경영 + 4X + JRPG
