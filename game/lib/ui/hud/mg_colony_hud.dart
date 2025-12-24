@@ -53,17 +53,17 @@ class MGColonyHud extends StatelessWidget {
           // 위기 경고
           if (isCrisis) _buildCrisisAlert(),
           Padding(
-            padding: EdgeInsets.all(MGSpacing.sm),
+            padding: const EdgeInsets.all(MGSpacing.sm),
             child: Column(
               children: [
                 // 상단 HUD: 자원 바
                 _buildResourcePanel(),
-                SizedBox(height: MGSpacing.xs),
+                const SizedBox(height: MGSpacing.xs),
                 // 하단 정보: 인구, 연구, 버튼
                 Row(
                   children: [
                     _buildPopulationInfo(),
-                    SizedBox(width: MGSpacing.sm),
+                    const SizedBox(width: MGSpacing.sm),
                     _buildResearchInfo(),
                     const Spacer(),
                     _buildActionButtons(),
@@ -80,7 +80,7 @@ class MGColonyHud extends StatelessWidget {
   Widget _buildCrisisAlert() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: MGSpacing.md,
         vertical: MGSpacing.xs,
       ),
@@ -96,8 +96,8 @@ class MGColonyHud extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.warning_amber, color: Colors.white, size: 18),
-          SizedBox(width: MGSpacing.xs),
+          const Icon(Icons.warning_amber, color: Colors.white, size: 18),
+          const SizedBox(width: MGSpacing.xs),
           Text(
             'CRITICAL: VITAL RESOURCES DEPLETED!',
             style: MGTextStyles.buttonSmall.copyWith(
@@ -112,7 +112,7 @@ class MGColonyHud extends StatelessWidget {
 
   Widget _buildResourcePanel() {
     return Container(
-      padding: EdgeInsets.all(MGSpacing.sm),
+      padding: const EdgeInsets.all(MGSpacing.sm),
       decoration: BoxDecoration(
         color: MGColors.surface.withOpacity(0.85),
         borderRadius: BorderRadius.circular(MGSpacing.sm),
@@ -133,7 +133,7 @@ class MGColonyHud extends StatelessWidget {
                   color: Colors.yellow,
                 ),
               ),
-              SizedBox(width: MGSpacing.sm),
+              const SizedBox(width: MGSpacing.sm),
               Expanded(
                 child: _buildResourceBar(
                   icon: Icons.water_drop,
@@ -145,7 +145,7 @@ class MGColonyHud extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: MGSpacing.xs),
+          const SizedBox(height: MGSpacing.xs),
           // 2행: Oxygen, Food
           Row(
             children: [
@@ -158,7 +158,7 @@ class MGColonyHud extends StatelessWidget {
                   color: Colors.cyan,
                 ),
               ),
-              SizedBox(width: MGSpacing.sm),
+              const SizedBox(width: MGSpacing.sm),
               Expanded(
                 child: _buildResourceBar(
                   icon: Icons.restaurant,
@@ -170,7 +170,7 @@ class MGColonyHud extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: MGSpacing.xs),
+          const SizedBox(height: MGSpacing.xs),
           // 3행: Iron
           _buildResourceBar(
             icon: Icons.construction,
@@ -197,7 +197,7 @@ class MGColonyHud extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, color: isLow ? Colors.red : color, size: 16),
-        SizedBox(width: MGSpacing.xxs),
+        const SizedBox(width: MGSpacing.xxs),
         Expanded(
           child: MGLinearProgress(
             value: ratio,
@@ -206,7 +206,7 @@ class MGColonyHud extends StatelessWidget {
             progressColor: isLow ? Colors.red : color,
           ),
         ),
-        SizedBox(width: MGSpacing.xxs),
+        const SizedBox(width: MGSpacing.xxs),
         Text(
           '${value.toInt()}',
           style: MGTextStyles.caption.copyWith(
@@ -220,7 +220,7 @@ class MGColonyHud extends StatelessWidget {
 
   Widget _buildPopulationInfo() {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: MGSpacing.sm,
         vertical: MGSpacing.xs,
       ),
@@ -232,8 +232,8 @@ class MGColonyHud extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.people, color: Colors.blue, size: 16),
-          SizedBox(width: MGSpacing.xs),
+          const Icon(Icons.people, color: Colors.blue, size: 16),
+          const SizedBox(width: MGSpacing.xs),
           Text(
             '$population',
             style: MGTextStyles.buttonSmall.copyWith(
@@ -248,7 +248,7 @@ class MGColonyHud extends StatelessWidget {
 
   Widget _buildResearchInfo() {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: MGSpacing.sm,
         vertical: MGSpacing.xs,
       ),
@@ -260,8 +260,8 @@ class MGColonyHud extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.science, color: Colors.purple, size: 16),
-          SizedBox(width: MGSpacing.xs),
+          const Icon(Icons.science, color: Colors.purple, size: 16),
+          const SizedBox(width: MGSpacing.xs),
           Text(
             '${research.toInt()}',
             style: MGTextStyles.buttonSmall.copyWith(

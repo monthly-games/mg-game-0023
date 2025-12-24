@@ -240,9 +240,9 @@ class _ColonyGrid extends StatelessWidget {
   Widget _buildBuildingSprite(String type, String id) {
     int frameIndex = 0;
 
-    if (type == 'Energy' && id.contains('solar'))
+    if (type == 'Energy' && id.contains('solar')) {
       frameIndex = 0;
-    else if (type == 'Energy' && id.contains('nuclear'))
+    } else if (type == 'Energy' && id.contains('nuclear'))
       frameIndex = 0;
     else if (type == 'Water')
       frameIndex = 1;

@@ -45,12 +45,13 @@ class _SpriteClipperState extends State<SpriteClipper> {
 
   @override
   Widget build(BuildContext context) {
-    if (_image == null)
+    if (_image == null) {
       return SizedBox(
         width: widget.size,
         height: widget.size,
         child: const CircularProgressIndicator(),
       );
+    }
 
     return CustomPaint(
       painter: _SpritePainter(

@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:uuid/uuid.dart';
 import '../models/building_model.dart';
 import 'event_manager.dart';
 
@@ -178,18 +177,24 @@ class GameState extends ChangeNotifier {
 
   void applyEventEffect(Map<String, double> resourceChanges) {
     resourceChanges.forEach((res, amount) {
-      if (res == 'iron')
+      if (res == 'iron') {
         _iron = (_iron + amount).clamp(0.0, _maxResources['iron']!);
-      if (res == 'water')
+      }
+      if (res == 'water') {
         _water = (_water + amount).clamp(0.0, _maxResources['water']!);
-      if (res == 'oxygen')
+      }
+      if (res == 'oxygen') {
         _oxygen = (_oxygen + amount).clamp(0.0, _maxResources['oxygen']!);
-      if (res == 'energy')
+      }
+      if (res == 'energy') {
         _energy = (_energy + amount).clamp(0.0, _maxResources['energy']!);
-      if (res == 'food')
+      }
+      if (res == 'food') {
         _food = (_food + amount).clamp(0.0, _maxResources['food']!);
-      if (res == 'research')
+      }
+      if (res == 'research') {
         _research = (_research + amount).clamp(0.0, _maxResources['research']!);
+      }
     });
     notifyListeners();
   }

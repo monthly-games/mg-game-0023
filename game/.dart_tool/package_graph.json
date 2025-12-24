@@ -13,6 +13,7 @@
         "flame_audio",
         "flutter",
         "get_it",
+        "google_mobile_ads",
         "mg_common_game",
         "provider",
         "shared_preferences",
@@ -20,7 +21,8 @@
       ],
       "devDependencies": [
         "flutter_lints",
-        "flutter_test"
+        "flutter_test",
+        "google_mobile_ads"
       ]
     },
     {
@@ -86,7 +88,7 @@
     },
     {
       "name": "mg_common_game",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "dependencies": [
         "flame",
         "flame_audio",
@@ -326,13 +328,10 @@
       ]
     },
     {
-      "name": "flame_spine",
-      "version": "0.3.0+1",
+      "name": "json_annotation",
+      "version": "4.9.0",
       "dependencies": [
-        "collection",
-        "flame",
-        "flutter",
-        "spine_flutter"
+        "meta"
       ]
     },
     {
@@ -345,9 +344,10 @@
       ]
     },
     {
-      "name": "json_annotation",
-      "version": "4.9.0",
+      "name": "injectable",
+      "version": "2.6.0",
       "dependencies": [
+        "get_it",
         "meta"
       ]
     },
@@ -361,11 +361,13 @@
       ]
     },
     {
-      "name": "injectable",
-      "version": "2.6.0",
+      "name": "flame_spine",
+      "version": "0.3.0+1",
       "dependencies": [
-        "get_it",
-        "meta"
+        "collection",
+        "flame",
+        "flutter",
+        "spine_flutter"
       ]
     },
     {
@@ -751,6 +753,55 @@
         "meta",
         "path",
         "web"
+      ]
+    },
+    {
+      "name": "google_mobile_ads",
+      "version": "5.3.1",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "webview_flutter",
+        "webview_flutter_android",
+        "webview_flutter_wkwebview"
+      ]
+    },
+    {
+      "name": "webview_flutter",
+      "version": "4.13.0",
+      "dependencies": [
+        "flutter",
+        "webview_flutter_android",
+        "webview_flutter_platform_interface",
+        "webview_flutter_wkwebview"
+      ]
+    },
+    {
+      "name": "webview_flutter_platform_interface",
+      "version": "2.14.0",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "webview_flutter_wkwebview",
+      "version": "3.23.5",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "path",
+        "webview_flutter_platform_interface"
+      ]
+    },
+    {
+      "name": "webview_flutter_android",
+      "version": "4.10.11",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "webview_flutter_platform_interface"
       ]
     }
   ],
