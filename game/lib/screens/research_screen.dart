@@ -69,7 +69,7 @@ class _TechCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: isUnlocked ? Colors.green.withOpacity(0.2) : Colors.grey[850],
+      color: isUnlocked ? Colors.green.withValues(alpha: 0.2) : Colors.grey[850],
       child: ListTile(
         title: Text(name),
         subtitle: Text(description),

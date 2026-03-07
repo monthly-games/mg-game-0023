@@ -7,6 +7,8 @@ import '../core/persistence_manager.dart';
 import '../models/building_model.dart';
 import '../ui/resource_view.dart';
 import '../ui/sprite_clipper.dart';
+import 'battlepass_screen.dart';
+import 'gacha_screen.dart';
 import 'research_screen.dart';
 
 class ColonyScreen extends StatefulWidget {
@@ -60,8 +62,20 @@ class _ColonyScreenState extends State<ColonyScreen> {
         title: const Text('Colony Frontier'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => _showSettings(context),
+            icon: const Icon(Icons.military_tech),
+            tooltip: 'BattlePass',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const BattlePassScreen()),
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.auto_awesome),
+            tooltip: 'Gacha',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const GachaScreen()),
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.science),
@@ -69,6 +83,10 @@ class _ColonyScreenState extends State<ColonyScreen> {
               context,
               MaterialPageRoute(builder: (_) => const ResearchScreen()),
             ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => _showSettings(context),
           ),
         ],
       ),
@@ -89,7 +107,7 @@ class _ColonyScreenState extends State<ColonyScreen> {
                 const ResourceView(),
                 if (context.watch<GameState>().isCrisis)
                   Container(
-                    color: Colors.red.withOpacity(0.8),
+                    color: Colors.red.withValues(alpha: 0.8),
                     width: double.infinity,
                     padding: const EdgeInsets.all(8),
                     child: const Text(
