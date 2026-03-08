@@ -13,6 +13,7 @@ import 'package:game/core/population_manager.dart';
 import 'package:game/core/building_manager.dart';
 import 'package:game/screens/colony_screen.dart';
 import 'package:mg_common_game/systems/progression/prestige_manager.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 // ═══════════════════════════════════════════════════════════════════════
 // Colony Frontier — MG-0023
@@ -260,7 +261,7 @@ class ColonyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
+        primarySwatch: MGColors.info,
         scaffoldBackgroundColor: const Color(0xFF0F172A),
         useMaterial3: true,
         cardTheme: const CardThemeData(
@@ -273,11 +274,11 @@ class ColonyApp extends StatelessWidget {
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Color(0xFF3B82F6),
-          foregroundColor: Colors.white,
+          foregroundColor: MGColors.textHighEmphasis,
         ),
         snackBarTheme: const SnackBarThemeData(
           backgroundColor: Color(0xFF334155),
-          contentTextStyle: TextStyle(color: Colors.white),
+          contentTextStyle: TextStyle(color: MGColors.textHighEmphasis),
         ),
       ),
       home: const ColonyScreen(),

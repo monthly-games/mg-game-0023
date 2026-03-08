@@ -10,6 +10,7 @@ import '../ui/sprite_clipper.dart';
 import 'battlepass_screen.dart';
 import 'gacha_screen.dart';
 import 'research_screen.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 class ColonyScreen extends StatefulWidget {
   const ColonyScreen({super.key});
@@ -107,14 +108,14 @@ class _ColonyScreenState extends State<ColonyScreen> {
                 const ResourceView(),
                 if (context.watch<GameState>().isCrisis)
                   Container(
-                    color: Colors.red.withValues(alpha: 0.8),
+                    color: MGColors.error.withValues(alpha: 0.8),
                     width: double.infinity,
                     padding: const EdgeInsets.all(8),
                     child: const Text(
                       'CRITICAL ALERT: VITAL RESOURCES DEPLETED!',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: MGColors.textHighEmphasis,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -228,7 +229,7 @@ class _ColonyGrid extends StatelessWidget {
               Text(
                 building.name,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 10, color: Colors.white),
+                style: const TextStyle(fontSize: 10, color: MGColors.textHighEmphasis),
               ),
             ],
           ),
@@ -314,7 +315,7 @@ class _BuildMenu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.water_drop, color: Colors.blue),
+            leading: const Icon(Icons.water_drop, color: MGColors.info),
             title: const Text('Water Extractor'),
             subtitle: const Text('Consumes 1 Energy, Produces 1 Water'),
             trailing: const Text('Free (Proto)'),
@@ -333,7 +334,7 @@ class _BuildMenu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.warehouse, color: Colors.grey),
+            leading: const Icon(Icons.warehouse, color: MGColors.common),
             title: const Text('Small Warehouse'),
             subtitle: const Text('+100 to All Storage'),
             trailing: const Text('Free (Proto)'),
@@ -378,7 +379,7 @@ class _BuildMenu extends StatelessWidget {
             'tech_adv_power',
           ))
             ListTile(
-              leading: const Icon(Icons.flash_on, color: Colors.orange),
+              leading: const Icon(Icons.flash_on, color: MGColors.warning),
               title: const Text('Nuclear Reactor'),
               subtitle: const Text('Produces 50 Energy/s'),
               trailing: const Text('Tech'),

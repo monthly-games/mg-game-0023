@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/game_state.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 class ResearchScreen extends StatelessWidget {
   const ResearchScreen({super.key});
@@ -69,12 +70,12 @@ class _TechCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: isUnlocked ? Colors.green.withValues(alpha: 0.2) : Colors.grey[850],
+      color: isUnlocked ? MGColors.success.withValues(alpha: 0.2) : Colors.grey[850],
       child: ListTile(
         title: Text(name),
         subtitle: Text(description),
         trailing: isUnlocked
-            ? const Icon(Icons.check, color: Colors.green)
+            ? const Icon(Icons.check, color: MGColors.success)
             : ElevatedButton(
                 onPressed: onUnlock,
                 child: Text('Unlock (${cost.toStringAsFixed(0)})'),

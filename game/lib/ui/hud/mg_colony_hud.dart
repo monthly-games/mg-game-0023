@@ -85,10 +85,10 @@ class MGColonyHud extends StatelessWidget {
         vertical: MGSpacing.xs,
       ),
       decoration: BoxDecoration(
-        color: Colors.red.withValues(alpha: 0.9),
+        color: MGColors.error.withValues(alpha: 0.9),
         boxShadow: [
           BoxShadow(
-            color: Colors.red.withValues(alpha: 0.5),
+            color: MGColors.error.withValues(alpha: 0.5),
             blurRadius: 8,
           ),
         ],
@@ -96,12 +96,12 @@ class MGColonyHud extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.warning_amber, color: Colors.white, size: 18),
+          const Icon(Icons.warning_amber, color: MGColors.textHighEmphasis, size: 18),
           const SizedBox(width: MGSpacing.xs),
           Text(
             'CRITICAL: VITAL RESOURCES DEPLETED!',
             style: MGTextStyles.buttonSmall.copyWith(
-              color: Colors.white,
+              color: MGColors.textHighEmphasis,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -140,7 +140,7 @@ class MGColonyHud extends StatelessWidget {
                   label: 'Water',
                   value: water,
                   maxValue: maxWater,
-                  color: Colors.blue,
+                  color: MGColors.info,
                 ),
               ),
             ],
@@ -165,7 +165,7 @@ class MGColonyHud extends StatelessWidget {
                   label: 'Food',
                   value: food,
                   maxValue: maxFood,
-                  color: Colors.green,
+                  color: MGColors.success,
                 ),
               ),
             ],
@@ -177,7 +177,7 @@ class MGColonyHud extends StatelessWidget {
             label: 'Iron',
             value: iron,
             maxValue: maxIron,
-            color: Colors.grey,
+            color: MGColors.common,
           ),
         ],
       ),
@@ -196,21 +196,21 @@ class MGColonyHud extends StatelessWidget {
 
     return Row(
       children: [
-        Icon(icon, color: isLow ? Colors.red : color, size: 16),
+        Icon(icon, color: isLow ? MGColors.error : color, size: 16),
         const SizedBox(width: MGSpacing.xxs),
         Expanded(
           child: MGLinearProgress(
             value: ratio,
             height: 8,
             backgroundColor: color.withValues(alpha: 0.2),
-            progressColor: isLow ? Colors.red : color,
+            progressColor: isLow ? MGColors.error : color,
           ),
         ),
         const SizedBox(width: MGSpacing.xxs),
         Text(
           '${value.toInt()}',
           style: MGTextStyles.caption.copyWith(
-            color: isLow ? Colors.red : Colors.white,
+            color: isLow ? MGColors.error : MGColors.textHighEmphasis,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -225,19 +225,19 @@ class MGColonyHud extends StatelessWidget {
         vertical: MGSpacing.xs,
       ),
       decoration: BoxDecoration(
-        color: Colors.blue.withValues(alpha: 0.2),
+        color: MGColors.info.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(MGSpacing.xs),
-        border: Border.all(color: Colors.blue.withValues(alpha: 0.5)),
+        border: Border.all(color: MGColors.info.withValues(alpha: 0.5)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.people, color: Colors.blue, size: 16),
+          const Icon(Icons.people, color: MGColors.info, size: 16),
           const SizedBox(width: MGSpacing.xs),
           Text(
             '$population',
             style: MGTextStyles.buttonSmall.copyWith(
-              color: Colors.white,
+              color: MGColors.textHighEmphasis,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -265,7 +265,7 @@ class MGColonyHud extends StatelessWidget {
           Text(
             '${research.toInt()}',
             style: MGTextStyles.buttonSmall.copyWith(
-              color: Colors.white,
+              color: MGColors.textHighEmphasis,
               fontWeight: FontWeight.bold,
             ),
           ),

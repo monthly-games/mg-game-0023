@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/game_state.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 class ResourceView extends StatelessWidget {
   const ResourceView({super.key});
@@ -20,14 +21,14 @@ class ResourceView extends StatelessWidget {
             value: state.iron,
             max: state.getMax('iron'),
             label: 'Iron',
-            color: Colors.grey,
+            color: MGColors.common,
           ),
           _ResourceItem(
             icon: Icons.water_drop,
             value: state.water,
             max: state.getMax('water'),
             label: 'Water',
-            color: Colors.blue,
+            color: MGColors.info,
           ),
           _ResourceItem(
             icon: Icons.air,
@@ -48,7 +49,7 @@ class ResourceView extends StatelessWidget {
             value: state.food,
             max: state.getMax('food'),
             label: 'Food',
-            color: Colors.green,
+            color: MGColors.success,
           ),
         ],
       ),
