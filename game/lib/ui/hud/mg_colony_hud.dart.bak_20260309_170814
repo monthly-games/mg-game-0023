@@ -24,7 +24,6 @@ class MGColonyHud extends StatelessWidget {
   final VoidCallback? onPause;
   final VoidCallback? onBuild;
   final VoidCallback? onResearch;
-  final VoidCallback? onDailyHub;
 
   const MGColonyHud({
     super.key,
@@ -44,7 +43,6 @@ class MGColonyHud extends StatelessWidget {
     this.onPause,
     this.onBuild,
     this.onResearch,
-    this.onDailyHub,
   });
 
   @override
@@ -292,13 +290,6 @@ class MGColonyHud extends StatelessWidget {
             onPressed: onResearch!,
             size: MGIconButtonSize.small,
           ),
-                if (onDailyHub != null)
-                  MGIconButton(
-                    icon: Icons.calendar_today,
-                    onPressed: onDailyHub!,
-                    buttonSize: MGIconButtonSize.small,
-                  ),
-                const SizedBox(width: MGSpacing.xs),
         if (onPause != null)
           MGIconButton(
             icon: Icons.settings,
