@@ -167,12 +167,11 @@ class _ColonyScreenState extends State<ColonyScreen> {
               onPressed: () async {
                 Navigator.pop(ctx);
                 final state = context.read<GameState>();
+                final messenger = ScaffoldMessenger.of(context);
                 final manager = PersistenceManager();
                 await manager.saveGame(state);
                 if (mounted) {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(const SnackBar(content: Text('Game Saved!')));
+                  messenger.showSnackBar(const SnackBar(content: Text('Game Saved!')));
                 }
               },
               child: const Text('Save Game'),
@@ -182,10 +181,11 @@ class _ColonyScreenState extends State<ColonyScreen> {
               onPressed: () async {
                 Navigator.pop(ctx);
                 final state = context.read<GameState>();
+                final messenger = ScaffoldMessenger.of(context);
                 final manager = PersistenceManager();
                 bool success = await manager.loadGame(state);
                 if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  messenger.showSnackBar(
                     SnackBar(
                       content: Text(success ? 'Game Loaded!' : 'No Save Found'),
                     ),
@@ -261,16 +261,17 @@ class _ColonyGrid extends StatelessWidget {
 
     if (type == 'Energy' && id.contains('solar')) {
       frameIndex = 0;
-    } else if (type == 'Energy' && id.contains('nuclear'))
+    } else if (type == 'Energy' && id.contains('nuclear')) {
       frameIndex = 0;
-    else if (type == 'Water')
+    } else if (type == 'Water') {
       frameIndex = 1;
-    else if (type == 'Research')
+    } else if (type == 'Research') {
       frameIndex = 2;
-    else if (type == 'Storage')
+    } else if (type == 'Storage') {
       frameIndex = 3;
-    else if (type == 'Food')
+    } else if (type == 'Food') {
       frameIndex = 1;
+    }
 
     return SpriteClipper(
       assetPath: 'assets/images/buildings.png',
