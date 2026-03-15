@@ -6,6 +6,7 @@ void main() {
   group('Event Logic Tests', () {
     test('EventManager triggers events', () {
       final manager = EventManager();
+      expect(manager, isNotNull);
       // Force trigger by simulating large time passage
       // It's probabilistic (30%), so not guaranteed, but likely.
       // Ideally we'd mock the Random inside EventManager, but for now let's just test logic structure.
