@@ -14,7 +14,7 @@ const kColonyCommanderMeta = SpineAssetMeta(
   atlasPath:
       'assets/spine/characters/colony_commander/colony_commander.atlas',
   skeletonPath:
-      'assets/spine/characters/colony_commander/colony_commander.skel',
+      'assets/spine/characters/colony_commander/colony_commander.json',
   animations: ['idle', 'walk', 'attack', 'hit'],
   defaultAnimation: 'idle',
   defaultMix: 0.2,
@@ -28,7 +28,7 @@ const kColonyEngineerMeta = SpineAssetMeta(
   atlasPath:
       'assets/spine/characters/colony_engineer/colony_engineer.atlas',
   skeletonPath:
-      'assets/spine/characters/colony_engineer/colony_engineer.skel',
+      'assets/spine/characters/colony_engineer/colony_engineer.json',
   animations: ['idle', 'walk', 'attack', 'hit'],
   defaultAnimation: 'idle',
   defaultMix: 0.2,
@@ -42,7 +42,7 @@ const kColonyScoutMeta = SpineAssetMeta(
   atlasPath:
       'assets/spine/characters/colony_scout/colony_scout.atlas',
   skeletonPath:
-      'assets/spine/characters/colony_scout/colony_scout.skel',
+      'assets/spine/characters/colony_scout/colony_scout.json',
   animations: ['idle', 'walk', 'attack', 'hit'],
   defaultAnimation: 'idle',
   defaultMix: 0.2,

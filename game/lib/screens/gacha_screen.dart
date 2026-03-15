@@ -182,7 +182,7 @@ class _GachaScreenState extends State<GachaScreen>
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: EdgeInsets.all(MGSpacing.md),
+                  padding: const EdgeInsets.all(MGSpacing.md),
                   child: MGIconButton(
                     icon: Icons.close,
                     onPressed: _dismissResults,
@@ -205,7 +205,7 @@ class _GachaScreenState extends State<GachaScreen>
               // Dismiss button
               if (!_isAnimating)
                 Padding(
-                  padding: EdgeInsets.all(MGSpacing.lg),
+                  padding: const EdgeInsets.all(MGSpacing.lg),
                   child: MGButton(
                     label: 'OK',
                     onPressed: _dismissResults,
@@ -260,14 +260,14 @@ class _GachaScreenState extends State<GachaScreen>
           ),
           const Spacer(),
           // Gem currency display
-          MGResourceBar(
+          const MGResourceBar(
             icon: Icons.diamond,
             value: '2,400',
             iconColor: MGColors.gem,
           ),
-          SizedBox(width: MGSpacing.sm),
+          const SizedBox(width: MGSpacing.sm),
           // Ticket currency display
-          MGResourceBar(
+          const MGResourceBar(
             icon: Icons.confirmation_number,
             value: '5',
             iconColor: MGColors.year1Accent,
@@ -280,7 +280,7 @@ class _GachaScreenState extends State<GachaScreen>
   // ── Tab bar: Pull | History ──────────────────────────────
   Widget _buildTabBar() {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(color: MGColors.border, width: 1),
         ),
@@ -332,20 +332,20 @@ class _GachaScreenState extends State<GachaScreen>
     final pityConfig = _gachaManager.pityConfig;
 
     return SingleChildScrollView(
-      padding: EdgeInsets.all(MGSpacing.md),
+      padding: const EdgeInsets.all(MGSpacing.md),
       child: Column(
         children: [
           // Pool selector (if multiple pools)
           if (pools.length > 1) ...[
             _buildPoolSelector(pools),
-            SizedBox(height: MGSpacing.lg),
+            const SizedBox(height: MGSpacing.lg),
           ],
           // Banner visual area
           _buildBannerArea(pool),
-          SizedBox(height: MGSpacing.lg),
+          const SizedBox(height: MGSpacing.lg),
           // Rate table
           _buildRateTable(pool),
-          SizedBox(height: MGSpacing.lg),
+          const SizedBox(height: MGSpacing.lg),
           // Pity indicator
           if (pityState != null)
             GachaPityIndicator(
@@ -353,7 +353,7 @@ class _GachaScreenState extends State<GachaScreen>
               softPity: pityConfig.softPityStart,
               hardPity: pityConfig.hardPity,
             ),
-          SizedBox(height: MGSpacing.lg),
+          const SizedBox(height: MGSpacing.lg),
           // Pull buttons row
           _buildPullButtons(),
         ],
@@ -368,7 +368,7 @@ class _GachaScreenState extends State<GachaScreen>
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: pools.length,
-        separatorBuilder: (_, __) => SizedBox(width: MGSpacing.sm),
+        separatorBuilder: (_, _) => const SizedBox(width: MGSpacing.sm),
         itemBuilder: (context, index) {
           final pool = pools[index];
           final isSelected = pool.id == _selectedPoolId;
@@ -376,7 +376,7 @@ class _GachaScreenState extends State<GachaScreen>
           return GestureDetector(
             onTap: () => _onPoolSelected(pool.id),
             child: Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: MGSpacing.md,
                 vertical: MGSpacing.xs,
               ),
@@ -413,7 +413,7 @@ class _GachaScreenState extends State<GachaScreen>
     return MGCard(
       backgroundColor: MGColors.surfaceDark,
       borderColor: MGColors.gem.withValues(alpha: 0.3),
-      padding: EdgeInsets.all(MGSpacing.lg),
+      padding: const EdgeInsets.all(MGSpacing.lg),
       child: Column(
         children: [
           Text(
@@ -423,7 +423,7 @@ class _GachaScreenState extends State<GachaScreen>
             ),
           ),
           if (pool.description != null) ...[
-            SizedBox(height: MGSpacing.xs),
+            const SizedBox(height: MGSpacing.xs),
             Text(
               pool.description!,
               style: MGTextStyles.bodySmall.copyWith(
@@ -432,7 +432,7 @@ class _GachaScreenState extends State<GachaScreen>
               textAlign: TextAlign.center,
             ),
           ],
-          SizedBox(height: MGSpacing.md),
+          const SizedBox(height: MGSpacing.md),
           // Featured colonist showcase placeholder
           Container(
             height: 120,
@@ -454,12 +454,12 @@ class _GachaScreenState extends State<GachaScreen>
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.auto_awesome,
                     color: MGColors.gem,
                     size: 40,
                   ),
-                  SizedBox(height: MGSpacing.xs),
+                  const SizedBox(height: MGSpacing.xs),
                   Text(
                     '${pool.items.length} colonists available',
                     style: MGTextStyles.caption.copyWith(
@@ -472,12 +472,12 @@ class _GachaScreenState extends State<GachaScreen>
           ),
           // Remaining time
           if (pool.remainingSeconds != null) ...[
-            SizedBox(height: MGSpacing.md),
+            const SizedBox(height: MGSpacing.md),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.timer, color: MGColors.warning, size: 16),
-                SizedBox(width: MGSpacing.xs),
+                const Icon(Icons.timer, color: MGColors.warning, size: 16),
+                const SizedBox(width: MGSpacing.xs),
                 Text(
                   _formatRemainingTime(pool.remainingSeconds!),
                   style: MGTextStyles.caption.copyWith(
@@ -495,7 +495,7 @@ class _GachaScreenState extends State<GachaScreen>
   // ── Rate table: probability display ──────────────────────
   Widget _buildRateTable(GachaPool pool) {
     return MGCard.outlined(
-      padding: EdgeInsets.all(MGSpacing.md),
+      padding: const EdgeInsets.all(MGSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -505,7 +505,7 @@ class _GachaScreenState extends State<GachaScreen>
               color: MGColors.textHighEmphasis,
             ),
           ),
-          SizedBox(height: MGSpacing.sm),
+          const SizedBox(height: MGSpacing.sm),
           ...GachaRarity.values.reversed.map((rarity) {
             final rate = pool.getRateForRarity(rarity);
             if (rate <= 0) return const SizedBox.shrink();
@@ -518,13 +518,13 @@ class _GachaScreenState extends State<GachaScreen>
 
   Widget _buildRateRow(GachaRarity rarity, double rate) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: MGSpacing.xxs),
+      padding: const EdgeInsets.symmetric(vertical: MGSpacing.xxs),
       child: Row(
         children: [
           // Rarity badge
           Container(
             width: 40,
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: MGSpacing.xs,
               vertical: MGSpacing.xxs,
             ),
@@ -542,7 +542,7 @@ class _GachaScreenState extends State<GachaScreen>
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(width: MGSpacing.sm),
+          const SizedBox(width: MGSpacing.sm),
           // Rate bar
           Expanded(
             child: MGLinearProgress(
@@ -553,7 +553,7 @@ class _GachaScreenState extends State<GachaScreen>
               borderRadius: 3,
             ),
           ),
-          SizedBox(width: MGSpacing.sm),
+          const SizedBox(width: MGSpacing.sm),
           // Rate percentage
           SizedBox(
             width: 50,
@@ -583,7 +583,7 @@ class _GachaScreenState extends State<GachaScreen>
             onPressed: _onSinglePull,
           ),
         ),
-        SizedBox(width: MGSpacing.md),
+        const SizedBox(width: MGSpacing.md),
         // Multi pull (10x)
         Expanded(
           child: GachaPullButton(
@@ -608,7 +608,7 @@ class _GachaScreenState extends State<GachaScreen>
     }
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: MGSpacing.md),
+      padding: const EdgeInsets.symmetric(horizontal: MGSpacing.md),
       child: Wrap(
         spacing: MGSpacing.sm,
         children: rarityCounts.entries.map((entry) {
@@ -640,19 +640,19 @@ class _GachaScreenState extends State<GachaScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.history,
               color: MGColors.textDisabled,
               size: 64,
             ),
-            SizedBox(height: MGSpacing.md),
+            const SizedBox(height: MGSpacing.md),
             Text(
               'No pull history yet',
               style: MGTextStyles.body.copyWith(
                 color: MGColors.textDisabled,
               ),
             ),
-            SizedBox(height: MGSpacing.xs),
+            const SizedBox(height: MGSpacing.xs),
             Text(
               'Your colonist summon results will appear here',
               style: MGTextStyles.caption.copyWith(
@@ -672,7 +672,7 @@ class _GachaScreenState extends State<GachaScreen>
         // History list
         Expanded(
           child: ListView.builder(
-            padding: EdgeInsets.all(MGSpacing.md),
+            padding: const EdgeInsets.all(MGSpacing.md),
             itemCount: history.length,
             itemBuilder: (context, index) {
               final entry = history[index];
@@ -691,7 +691,7 @@ class _GachaScreenState extends State<GachaScreen>
     final pityState = _gachaManager.getPityState(_selectedPoolId!);
 
     return Padding(
-      padding: EdgeInsets.all(MGSpacing.md),
+      padding: const EdgeInsets.all(MGSpacing.md),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -727,7 +727,7 @@ class _GachaScreenState extends State<GachaScreen>
     return Column(
       children: [
         Icon(icon, color: color, size: 24),
-        SizedBox(height: MGSpacing.xs),
+        const SizedBox(height: MGSpacing.xs),
         Text(
           value,
           style: MGTextStyles.h3.copyWith(
@@ -749,10 +749,10 @@ class _GachaScreenState extends State<GachaScreen>
     final rarityColor = _getRarityColor(entry.rarity);
 
     return Padding(
-      padding: EdgeInsets.only(bottom: MGSpacing.xs),
+      padding: const EdgeInsets.only(bottom: MGSpacing.xs),
       child: MGCard(
         backgroundColor: MGColors.surfaceDark,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: MGSpacing.md,
           vertical: MGSpacing.sm,
         ),
@@ -778,7 +778,7 @@ class _GachaScreenState extends State<GachaScreen>
                 ),
               ),
             ),
-            SizedBox(width: MGSpacing.sm),
+            const SizedBox(width: MGSpacing.sm),
             // Item info
             Expanded(
               child: Column(
@@ -822,7 +822,6 @@ class _GachaScreenState extends State<GachaScreen>
       GachaRarity.superRare => MGColors.epic,
       GachaRarity.ultraRare => MGColors.legendary,
       GachaRarity.legendary => MGColors.mythic,
-      _ => MGColors.common,
     };
   }
 

@@ -109,7 +109,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
+          const Icon(
             Icons.assignment_late_rounded,
             size: MGSpacing.xxl,
             color: MGColors.textDisabled,
@@ -302,7 +302,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.check_circle_rounded,
                       size: MGIcons.badgeSize,
                       color: MGColors.success,
@@ -351,7 +351,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.monetization_on_rounded,
               size: MGIcons.badgeSize,
               color: MGColors.gold,
@@ -369,7 +369,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.star_rounded,
               size: MGIcons.badgeSize,
               color: MGColors.exp,

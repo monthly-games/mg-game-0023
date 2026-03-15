@@ -7,7 +7,6 @@ void main() {
     test('EventManager triggers events', () {
       final manager = EventManager();
       // Force trigger by simulating large time passage
-      final event = manager.checkForEvents(120.0);
       // It's probabilistic (30%), so not guaranteed, but likely.
       // Ideally we'd mock the Random inside EventManager, but for now let's just test logic structure.
       // If null, it just means RNG didn't hit.

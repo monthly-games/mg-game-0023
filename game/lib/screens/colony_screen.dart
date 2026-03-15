@@ -256,24 +256,6 @@ class _ColonyGrid extends StatelessWidget {
     );
   }
 
-  IconData _getIconForType(String type) {
-    switch (type) {
-      case 'Energy':
-        return Icons.flash_on;
-      case 'Water':
-        return Icons.water_drop;
-      case 'Oxygen':
-        return Icons.air;
-      case 'Food':
-        return Icons
-            .local_florist; // Changed from agriculture which might not exist
-      case 'Iron':
-        return Icons.construction;
-      default:
-        return Icons.domain;
-    }
-  }
-
   Widget _buildBuildingSprite(String type, String id) {
     int frameIndex = 0;
 

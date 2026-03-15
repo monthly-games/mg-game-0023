@@ -211,7 +211,7 @@ class MGColonyHud extends StatelessWidget {
             value: ratio,
             height: 8,
             backgroundColor: color.withValues(alpha: 0.2),
-            progressColor: isLow ? MGColors.error : color,
+            valueColor: isLow ? MGColors.error : color,
           ),
         ),
         const SizedBox(width: MGSpacing.xxs),
@@ -290,13 +290,13 @@ class MGColonyHud extends StatelessWidget {
           MGIconButton(
             icon: Icons.add_box,
             onPressed: onBuild!,
-            size: MGIconButtonSize.small,
+            buttonSize: MGIconButtonSize.small,
           ),
         if (onResearch != null)
           MGIconButton(
             icon: Icons.science,
             onPressed: onResearch!,
-            size: MGIconButtonSize.small,
+            buttonSize: MGIconButtonSize.small,
           ),
                 if (onGuildWar != null)
                   MGIconButton(
@@ -330,7 +330,7 @@ class MGColonyHud extends StatelessWidget {
           MGIconButton(
             icon: Icons.settings,
             onPressed: onPause!,
-            size: MGIconButtonSize.small,
+            buttonSize: MGIconButtonSize.small,
           ),
       ],
     );

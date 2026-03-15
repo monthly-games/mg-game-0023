@@ -1,30 +1,11 @@
+import 'package:mg_common_game/mg_common_game.dart';
 import 'package:flutter/material.dart';
-import 'package:mg_common_game/core/ui/screens/seasonal_event_screen.dart';
-import 'package:mg_common_game/core/ui/screens/tournament_screen.dart';
-import 'package:mg_common_game/core/ui/screens/guild_war_screen.dart';
-import 'package:mg_common_game/systems/events/seasonal_content_manager.dart';
-import 'package:mg_common_game/systems/competitive/tournament_manager.dart';
-import 'package:mg_common_game/systems/social/guild_war_manager.dart';
-import 'package:mg_common_game/systems/quests/daily_quest.dart';
-import 'package:mg_common_game/core/ui/screens/daily_hub_screen.dart';
-import 'package:mg_common_game/systems/retention/daily_challenge_manager.dart';
-import 'package:mg_common_game/systems/retention/streak_manager.dart';
-import 'package:mg_common_game/systems/retention/login_rewards_manager.dart';
-import 'package:flutter/foundation.dart';
-import 'package:mg_common_game/systems/systems.dart';
-import 'package:mg_common_game/systems/gacha/gacha_pool.dart';
-import 'package:mg_common_game/systems/gacha/gacha_manager.dart';
-import 'package:mg_common_game/systems/battlepass/battlepass_config.dart';
-import 'package:mg_common_game/systems/battlepass/battlepass_manager.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
-import 'package:mg_common_game/systems/progression/upgrade_manager.dart';
-import 'package:game/core/game_state.dart';
-import 'package:game/core/population_manager.dart';
-import 'package:game/core/building_manager.dart';
-import 'package:game/screens/colony_screen.dart';
-import 'package:mg_common_game/systems/progression/prestige_manager.dart';
-import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
+import 'core/game_state.dart';
+import 'core/population_manager.dart';
+import 'core/building_manager.dart';
+import 'screens/colony_screen.dart';
 import 'screens/collection_screen.dart';
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -47,9 +28,12 @@ void main() async {
   // Collection 시스템
   if (!GetIt.I.isRegistered<CollectionManager>()) {
     GetIt.I.registerSingleton(CollectionManager());
+    _registerCollections();
+  }
   // ── DailyQuest for DailyHub ───────────────────────────────
   if (!GetIt.I.isRegistered<DailyQuestManager>()) {
     GetIt.I.registerSingleton(DailyQuestManager());
+  }
   // ── Retention Systems for DailyHub ────────────────────────
   if (!GetIt.I.isRegistered<LoginRewardsManager>()) {
     GetIt.I.registerSingleton(LoginRewardsManager());
@@ -59,7 +43,7 @@ void main() async {
   }
   if (!GetIt.I.isRegistered<DailyChallengeManager>()) {
     GetIt.I.registerSingleton(DailyChallengeManager());
-}
+  }
   // ── P3 Engine Systems ─────────────────────────────────────
   if (!GetIt.I.isRegistered<GuildWarManager>()) {
     GetIt.I.registerSingleton(GuildWarManager());
@@ -69,9 +53,6 @@ void main() async {
   }
   if (!GetIt.I.isRegistered<SeasonalContentManager>()) {
     GetIt.I.registerSingleton(SeasonalContentManager());
-  }
-  }
-    _registerCollections();
   }
   _setupGacha();
   _setupBattlePass();
@@ -297,7 +278,7 @@ class ColonyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: MGColors.info,
+        primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFF0F172A),
         useMaterial3: true,
         cardTheme: const CardThemeData(
@@ -400,14 +381,14 @@ void _setupGacha() {
       )),
 
       // SSR (2.7%)
-      GachaItem(
+      const GachaItem(
         id: 'ssr_item_1',
         nameKr: '울트라레어 아이템 1',
         rarity: GachaRarity.ultraRare,
       ),
 
       // UR (0.3%)
-      GachaItem(
+      const GachaItem(
         id: 'ur_item_1',
         nameKr: '레전더리 아이템 1',
         rarity: GachaRarity.legendary,
@@ -480,47 +461,47 @@ void _registerCollections() {
   final collection = GetIt.I<CollectionManager>();
 
   // Characters 컬렉션
-  collection.registerCollection(const Collection(
+  collection.registerCollection(Collection(
     id: 'characters',
     name: '캐릭터',
     description: '모든 캐릭터를 수집하세요',
     items: [
-      CollectionItem(
+      const CollectionItem(
         id: 'char_warrior',
         name: '전사',
         description: '강인한 근접 전투 캐릭터',
         rarity: CollectionRarity.common,
       ),
-      CollectionItem(
+      const CollectionItem(
         id: 'char_mage',
         name: '마법사',
         description: '강력한 마법 공격 캐릭터',
         rarity: CollectionRarity.rare,
       ),
-      CollectionItem(
+      const CollectionItem(
         id: 'char_archer',
         name: '궁수',
         description: '원거리 정밀 공격 캐릭터',
         rarity: CollectionRarity.rare,
       ),
-      CollectionItem(
+      const CollectionItem(
         id: 'char_assassin',
         name: '암살자',
         description: '치명적인 은신 공격 캐릭터',
         rarity: CollectionRarity.epic,
       ),
-      CollectionItem(
+      const CollectionItem(
         id: 'char_healer',
         name: '힐러',
         description: '팀을 치유하는 지원 캐릭터',
         rarity: CollectionRarity.legendary,
       ),
     ],
-    completionReward: CollectionReward(type: RewardType.gold, amount: 10000),
+    completionReward: const CollectionReward(type: RewardType.gold, amount: 10000),
     milestoneRewards: {
-      25: CollectionReward(type: RewardType.gold, amount: 1000),
-      50: CollectionReward(type: RewardType.gold, amount: 3000),
-      75: CollectionReward(type: RewardType.gold, amount: 5000),
+      25: const CollectionReward(type: RewardType.gold, amount: 1000),
+      50: const CollectionReward(type: RewardType.gold, amount: 3000),
+      75: const CollectionReward(type: RewardType.gold, amount: 5000),
     },
   ));
 
