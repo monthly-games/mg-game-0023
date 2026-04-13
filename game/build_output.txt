@@ -1,0 +1,420 @@
+Resolving dependencies...
+Downloading packages...
+  async 2.13.0 (2.13.1 available)
+  audioplayers 6.5.1 (6.6.0 available)
+  audioplayers_darwin 6.3.0 (6.4.0 available)
+  audioplayers_web 5.1.1 (5.2.0 available)
+  audioplayers_windows 4.2.1 (4.3.0 available)
+  characters 1.4.0 (1.4.1 available)
+  cupertino_icons 1.0.8 (1.0.9 available)
+  device_info_plus 11.5.0 (12.4.0 available)
+  equatable 2.0.7 (2.0.8 available)
+  ffi 2.1.4 (2.2.0 available)
+  flame 1.34.0 (1.36.0 available)
+  flame_audio 2.11.12 (2.12.0 available)
+  flame_spine 0.3.0+1 (0.3.0+4 available)
+  flutter_lints 3.0.2 (6.0.0 available)
+  get_it 9.2.0 (9.2.1 available)
+  injectable 2.6.0 (2.7.1+4 available)
+  js 0.6.7 (0.7.2 available)
+  json_annotation 4.9.0 (4.11.0 available)
+  lints 3.0.0 (6.1.0 available)
+  matcher 0.12.17 (0.12.19 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.17.0 (1.18.2 available)
+  path_provider_android 2.2.22 (2.3.1 available)
+  path_provider_foundation 2.5.1 (2.6.0 available)
+  shared_preferences 2.5.4 (2.5.5 available)
+  shared_preferences_android 2.4.18 (2.4.23 available)
+  shared_preferences_platform_interface 2.4.1 (2.4.2 available)
+  source_span 1.10.1 (1.10.2 available)
+  test_api 0.7.7 (0.7.11 available)
+  universal_ffi 1.1.3 (1.5.0 available)
+  uuid 4.5.2 (4.5.3 available)
+  vector_math 2.2.0 (2.3.0 available)
+  wasm_ffi 2.0.7 (2.3.0 available)
+  webview_flutter 4.13.0 (4.13.1 available)
+  webview_flutter_android 4.10.11 (4.10.15 available)
+  webview_flutter_platform_interface 2.14.0 (2.15.1 available)
+  webview_flutter_wkwebview 3.23.5 (3.24.2 available)
+  win32 5.15.0 (6.0.0 available)
+  win32_registry 2.1.0 (3.0.2 available)
+Got dependencies!
+39 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleDebug'...                          
+e: Daemon compilation failed: null
+java.lang.Exception
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:69)
+	at org.jetbrains.kotlin.daemon.common.CompileService$CallResult$Error.get(CompileService.kt:65)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemon(GradleKotlinCompilerWork.kt:240)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileWithDaemonOrFallbackImpl(GradleKotlinCompilerWork.kt:159)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.run(GradleKotlinCompilerWork.kt:111)
+	at org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction.execute(GradleCompilerRunnerWithWorkers.kt:76)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.AssertionError: java.lang.Exception: Could not close incremental caches in C:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\build\kotlin\compileKotlin\cacheable\caches-jvm\jvm\kotlin: constants.tab
+	at org.jetbrains.kotlin.com.google.common.io.Closer.close(Closer.java:236)
+	at org.jetbrains.kotlin.incremental.IncrementalCachesManager.close(IncrementalCachesManager.kt:55)
+	at kotlin.io.CloseableKt.closeFinally(Closeable.kt:56)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:293)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:129)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:675)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1660)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	... 3 more
+Caused by: java.lang.Exception: Could not close incremental caches in C:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\build\kotlin\compileKotlin\cacheable\caches-jvm\jvm\kotlin: constants.tab
+	at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner.forEachMapSafe(BasicMapsOwner.kt:95)
+	at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner.close(BasicMapsOwner.kt:53)
+	at org.jetbrains.kotlin.com.google.common.io.Closer.close(Closer.java:223)
+	... 22 more
+	Suppressed: java.lang.IllegalStateException: Storage for [C:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\build\kotlin\compileKotlin\cacheable\caches-jvm\jvm\kotlin\constants.tab] is already registered
+		at org.jetbrains.kotlin.com.intellij.util.io.FilePageCache.registerPagedFileStorage(FilePageCache.java:410)
+		at org.jetbrains.kotlin.com.intellij.util.io.PagedFileStorage.<init>(PagedFileStorage.java:72)
+		at org.jetbrains.kotlin.com.intellij.util.io.ResizeableMappedFile.<init>(ResizeableMappedFile.java:55)
+		at org.jetbrains.kotlin.com.intellij.util.io.PersistentBTreeEnumerator.<init>(PersistentBTreeEnumerator.java:128)
+		at org.jetbrains.kotlin.com.intellij.util.io.PersistentEnumerator.createDefaultEnumerator(PersistentEnumerator.java:52)
+		at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapImpl.<init>(PersistentMapImpl.java:165)
+		at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapImpl.<init>(PersistentMapImpl.java:140)
+		at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapBuilder.buildImplementation(PersistentMapBuilder.java:88)
+		at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapBuilder.build(PersistentMapBuilder.java:71)
+		at org.jetbrains.kotlin.com.intellij.util.io.PersistentHashMap.<init>(PersistentHashMap.java:45)
+		at org.jetbrains.kotlin.com.intellij.util.io.PersistentHashMap.<init>(PersistentHashMap.java:71)
+		at org.jetbrains.kotlin.incremental.storage.LazyStorage.createMap(LazyStorage.kt:62)
+		at org.jetbrains.kotlin.incremental.storage.LazyStorage.getStorageOrCreateNew(LazyStorage.kt:59)
+		at org.jetbrains.kotlin.incremental.storage.LazyStorage.set(LazyStorage.kt:80)
+		at org.jetbrains.kotlin.incremental.storage.InMemoryStorage.applyChanges(InMemoryStorage.kt:108)
+		at org.jetbrains.kotlin.incremental.storage.InMemoryStorage.close(InMemoryStorage.kt:136)
+		at org.jetbrains.kotlin.incremental.storage.PersistentStorageWrapper.close(PersistentStorage.kt:111)
+		at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner$close$1.invoke(BasicMapsOwner.kt:53)
+		at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner$close$1.invoke(BasicMapsOwner.kt:53)
+		at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner.forEachMapSafe(BasicMapsOwner.kt:87)
+		... 24 more
+		Suppressed: java.lang.Exception: Storage[C:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\build\kotlin\compileKotlin\cacheable\caches-jvm\jvm\kotlin\constants.tab] registration stack trace
+			at org.jetbrains.kotlin.com.intellij.util.io.FilePageCache.registerPagedFileStorage(FilePageCache.java:437)
+			at org.jetbrains.kotlin.com.intellij.util.io.PagedFileStorage.<init>(PagedFileStorage.java:72)
+			at org.jetbrains.kotlin.com.intellij.util.io.ResizeableMappedFile.<init>(ResizeableMappedFile.java:55)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentBTreeEnumerator.<init>(PersistentBTreeEnumerator.java:128)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentEnumerator.createDefaultEnumerator(PersistentEnumerator.java:52)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapImpl.<init>(PersistentMapImpl.java:165)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapImpl.<init>(PersistentMapImpl.java:140)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapBuilder.buildImplementation(PersistentMapBuilder.java:88)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapBuilder.build(PersistentMapBuilder.java:71)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentHashMap.<init>(PersistentHashMap.java:45)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentHashMap.<init>(PersistentHashMap.java:71)
+			at org.jetbrains.kotlin.incremental.storage.LazyStorage.createMap(LazyStorage.kt:62)
+			at org.jetbrains.kotlin.incremental.storage.LazyStorage.getStorageOrCreateNew(LazyStorage.kt:59)
+			at org.jetbrains.kotlin.incremental.storage.LazyStorage.set(LazyStorage.kt:80)
+			at org.jetbrains.kotlin.incremental.storage.InMemoryStorage.applyChanges(InMemoryStorage.kt:108)
+			at org.jetbrains.kotlin.incremental.storage.InMemoryStorage.close(InMemoryStorage.kt:136)
+			at org.jetbrains.kotlin.incremental.storage.PersistentStorageWrapper.close(PersistentStorage.kt:111)
+			at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner$close$1.invoke(BasicMapsOwner.kt:53)
+			at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner$close$1.invoke(BasicMapsOwner.kt:53)
+			at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner.forEachMapSafe(BasicMapsOwner.kt:87)
+			at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner.close(BasicMapsOwner.kt:53)
+			at org.jetbrains.kotlin.com.google.common.io.Closer.close(Closer.java:223)
+			at org.jetbrains.kotlin.incremental.IncrementalCachesManager.close(IncrementalCachesManager.kt:55)
+			at kotlin.io.CloseableKt.closeFinally(Closeable.kt:59)
+			... 20 more
+	Suppressed: java.lang.Exception: Could not close incremental caches in C:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\build\kotlin\compileKotlin\cacheable\caches-jvm\lookups: lookups.tab
+		at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner.forEachMapSafe(BasicMapsOwner.kt:95)
+		at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner.close(BasicMapsOwner.kt:53)
+		at org.jetbrains.kotlin.incremental.LookupStorage.close(LookupStorage.kt:155)
+		... 23 more
+		Suppressed: java.lang.IllegalStateException: Storage for [C:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\build\kotlin\compileKotlin\cacheable\caches-jvm\lookups\lookups.tab] is already registered
+			at org.jetbrains.kotlin.com.intellij.util.io.FilePageCache.registerPagedFileStorage(FilePageCache.java:410)
+			at org.jetbrains.kotlin.com.intellij.util.io.PagedFileStorage.<init>(PagedFileStorage.java:72)
+			at org.jetbrains.kotlin.com.intellij.util.io.ResizeableMappedFile.<init>(ResizeableMappedFile.java:55)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentBTreeEnumerator.<init>(PersistentBTreeEnumerator.java:128)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentEnumerator.createDefaultEnumerator(PersistentEnumerator.java:52)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapImpl.<init>(PersistentMapImpl.java:165)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapImpl.<init>(PersistentMapImpl.java:140)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapBuilder.buildImplementation(PersistentMapBuilder.java:88)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentMapBuilder.build(PersistentMapBuilder.java:71)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentHashMap.<init>(PersistentHashMap.java:45)
+			at org.jetbrains.kotlin.com.intellij.util.io.PersistentHashMap.<init>(PersistentHashMap.java:71)
+			at org.jetbrains.kotlin.incremental.storage.LazyStorage.createMap(LazyStorage.kt:62)
+			at org.jetbrains.kotlin.incremental.storage.LazyStorage.getStorageOrCreateNew(LazyStorage.kt:59)
+			at org.jetbrains.kotlin.incremental.storage.LazyStorage.set(LazyStorage.kt:80)
+			at org.jetbrains.kotlin.incremental.storage.InMemoryStorage.applyChanges(InMemoryStorage.kt:108)
+			at org.jetbrains.kotlin.incremental.storage.AppendableInMemoryStorage.applyChanges(InMemoryStorage.kt:179)
+			at org.jetbrains.kotlin.incremental.storage.InMemoryStorage.close(InMemoryStorage.kt:136)
+			at org.jetbrains.kotlin.incremental.storage.AppendableSetBasicMap.close(BasicMap.kt:157)
+			at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner$close$1.invoke(BasicMapsOwner.kt:53)
+			at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner$close$1.invoke(BasicMapsOwner.kt:53)
+			at org.jetbrains.kotlin.incremental.storage.BasicMapsOwner.forEachMapSafe(BasicMapsOwner.kt:87)
+			... 25 more
+			Suppressed: java.lang.Exception: Storage[C:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\build\kotlin\compileKotlin\cacheable\caches-jvm\lookups\lookups.tab] registration stack trace
+				at org.jetbrains.kotlin.com.intellij.util.io.FilePageCache.registerPagedFileStorage(FilePageCache.java:437)
+				... 45 more
+
+exception: warning: ATTENTION!
+exception: this build uses unsafe internal compiler arguments:
+exception: 
+exception: 
+exception: this mode is not recommended for production use,
+exception: as no stability/compatibility guarantees are given on
+exception: compiler or generated code. Use it at your own risk!
+exception: 
+exception: c:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\src\main\kotlin\FlutterPlugin.kt:11:37: warning: 'ApkVariant' is deprecated. Deprecated in Java
+exception: import com.android.build.gradle.api.ApkVariant
+exception:                                     ^^^^^^^^^^
+exception: c:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\src\main\kotlin\FlutterPlugin.kt:609:69: warning: 'ApkVariant' is deprecated. Deprecated in Java
+exception:                     val versionCodeIfPresent: Int? = if (variant is ApkVariant) variant.versionCode else null
+exception:                                                                     ^^^^^^^^^^
+exception: c:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\src\main\kotlin\plugins\PluginHandler.kt:186:64: warning: unchecked cast: NamedDomainObjectContainer<out BuildType> to NamedDomainObjectContainer<BuildType>
+exception:                 (getAndroidExtension(pluginProject).buildTypes as NamedDomainObjectContainer<dslBuildType>)
+exception:                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+exception: c:\Users\USER-5\develop\flutter\packages\flutter_tools\gradle\src\main\kotlin\plugins\PluginHandler.kt:187:69: warning: unchecked cast: NamedDomainObjectContainer<out BuildType> to NamedDomainObjectContainer<BuildType>
+exception:                     .addAll(getAndroidExtension(project).buildTypes as NamedDomainObjectContainer<dslBuildType>)
+exception:                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lib/main.dart:540:7: Error: Expected a declaration, but got '...'.
+      ...List.generate(20, (i) => GachaItem(
+      ^^^
+lib/main.dart:540:10: Error: A function declaration needs an explicit list of parameters.
+Try adding a parameter list to the function declaration.
+      ...List.generate(20, (i) => GachaItem(
+         ^^^^
+lib/main.dart:540:14: Error: Expected '{' before this.
+      ...List.generate(20, (i) => GachaItem(
+             ^
+lib/main.dart:540:14: Error: Expected a declaration, but got '.'.
+      ...List.generate(20, (i) => GachaItem(
+             ^
+lib/main.dart:540:24: Error: Expected an identifier, but got '20'.
+Try inserting an identifier before '20'.
+      ...List.generate(20, (i) => GachaItem(
+                       ^^
+lib/main.dart:540:28: Error: Expected an identifier, but got '('.
+Try inserting an identifier before '('.
+      ...List.generate(20, (i) => GachaItem(
+                           ^
+lib/main.dart:540:32: Error: Expected ')' before this.
+      ...List.generate(20, (i) => GachaItem(
+                               ^^
+lib/main.dart:544:9: Error: Expected '{' before this.
+      )),
+        ^
+lib/main.dart:544:9: Error: Expected a declaration, but got ','.
+      )),
+        ^
+lib/main.dart:547:7: Error: Expected a declaration, but got '...'.
+      ...List.generate(10, (i) => GachaItem(
+      ^^^
+lib/main.dart:547:10: Error: A function declaration needs an explicit list of parameters.
+Try adding a parameter list to the function declaration.
+      ...List.generate(10, (i) => GachaItem(
+         ^^^^
+lib/main.dart:547:14: Error: Expected '{' before this.
+      ...List.generate(10, (i) => GachaItem(
+             ^
+lib/main.dart:547:14: Error: Expected a declaration, but got '.'.
+      ...List.generate(10, (i) => GachaItem(
+             ^
+lib/main.dart:547:24: Error: Expected an identifier, but got '10'.
+Try inserting an identifier before '10'.
+      ...List.generate(10, (i) => GachaItem(
+                       ^^
+lib/main.dart:547:28: Error: Expected an identifier, but got '('.
+Try inserting an identifier before '('.
+      ...List.generate(10, (i) => GachaItem(
+                           ^
+lib/main.dart:547:32: Error: Expected ')' before this.
+      ...List.generate(10, (i) => GachaItem(
+                               ^^
+lib/main.dart:551:9: Error: Expected '{' before this.
+      )),
+        ^
+lib/main.dart:551:9: Error: Expected a declaration, but got ','.
+      )),
+        ^
+lib/main.dart:554:7: Error: Expected a declaration, but got '...'.
+      ...List.generate(5, (i) => GachaItem(
+      ^^^
+lib/main.dart:554:10: Error: A function declaration needs an explicit list of parameters.
+Try adding a parameter list to the function declaration.
+      ...List.generate(5, (i) => GachaItem(
+         ^^^^
+lib/main.dart:554:14: Error: Expected '{' before this.
+      ...List.generate(5, (i) => GachaItem(
+             ^
+lib/main.dart:554:14: Error: Expected a declaration, but got '.'.
+      ...List.generate(5, (i) => GachaItem(
+             ^
+lib/main.dart:554:24: Error: Expected an identifier, but got '5'.
+Try inserting an identifier before '5'.
+      ...List.generate(5, (i) => GachaItem(
+                       ^
+lib/main.dart:554:27: Error: Expected an identifier, but got '('.
+Try inserting an identifier before '('.
+      ...List.generate(5, (i) => GachaItem(
+                          ^
+lib/main.dart:554:31: Error: Expected ')' before this.
+      ...List.generate(5, (i) => GachaItem(
+                              ^^
+lib/main.dart:558:9: Error: Expected '{' before this.
+      )),
+        ^
+lib/main.dart:558:9: Error: Expected a declaration, but got ','.
+      )),
+        ^
+lib/main.dart:561:7: Error: Can't have modifier 'const' here.
+Try removing 'const'.
+      const GachaItem(
+      ^^^^^
+lib/main.dart:562:11: Error: Non-optional parameters can't have a default value.
+Try removing the default value or making the parameter optional.
+        id: 'ssr_item_1',
+          ^
+lib/main.dart:563:15: Error: Non-optional parameters can't have a default value.
+Try removing the default value or making the parameter optional.
+        nameKr: '울트라레어 아이템 1',
+              ^
+lib/main.dart:564:15: Error: Non-optional parameters can't have a default value.
+Try removing the default value or making the parameter optional.
+        rarity: GachaRarity.ultraRare,
+              ^
+lib/main.dart:565:8: Error: Expected '{' before this.
+      ),
+       ^
+lib/main.dart:565:8: Error: Expected a declaration, but got ','.
+      ),
+       ^
+lib/main.dart:568:7: Error: Can't have modifier 'const' here.
+Try removing 'const'.
+      const GachaItem(
+      ^^^^^
+lib/main.dart:569:11: Error: Non-optional parameters can't have a default value.
+Try removing the default value or making the parameter optional.
+        id: 'ur_item_1',
+          ^
+lib/main.dart:570:15: Error: Non-optional parameters can't have a default value.
+Try removing the default value or making the parameter optional.
+        nameKr: '레전더리 아이템 1',
+              ^
+lib/main.dart:571:15: Error: Non-optional parameters can't have a default value.
+Try removing the default value or making the parameter optional.
+        rarity: GachaRarity.legendary,
+              ^
+lib/main.dart:572:8: Error: Expected '{' before this.
+      ),
+       ^
+lib/main.dart:572:8: Error: Expected a declaration, but got ','.
+      ),
+       ^
+lib/main.dart:573:5: Error: Expected a declaration, but got ']'.
+    ],
+    ^
+lib/main.dart:573:6: Error: Expected a declaration, but got ','.
+    ],
+     ^
+lib/main.dart:574:3: Error: Expected a declaration, but got ')'.
+  ));
+  ^
+lib/main.dart:574:4: Error: Expected a declaration, but got ')'.
+  ));
+   ^
+lib/main.dart:574:5: Error: Unexpected token ';'.
+  ));
+    ^
+lib/main.dart:575:1: Error: Expected a declaration, but got '}'.
+}
+^
+lib/main.dart:547:10: Error: 'List' is already declared in this scope.
+      ...List.generate(10, (i) => GachaItem(
+         ^^^^
+lib/main.dart:540:10: Context: Previous declaration of 'List'.
+      ...List.generate(20, (i) => GachaItem(
+         ^^^^
+lib/main.dart:554:10: Error: 'List' is already declared in this scope.
+      ...List.generate(5, (i) => GachaItem(
+         ^^^^
+lib/main.dart:540:10: Context: Previous declaration of 'List'.
+      ...List.generate(20, (i) => GachaItem(
+         ^^^^
+lib/main.dart:547:15: Error: 'generate' is already declared in this scope.
+      ...List.generate(10, (i) => GachaItem(
+              ^^^^^^^^
+lib/main.dart:540:15: Context: Previous declaration of 'generate'.
+      ...List.generate(20, (i) => GachaItem(
+              ^^^^^^^^
+lib/main.dart:554:15: Error: 'generate' is already declared in this scope.
+      ...List.generate(5, (i) => GachaItem(
+              ^^^^^^^^
+lib/main.dart:540:15: Context: Previous declaration of 'generate'.
+      ...List.generate(20, (i) => GachaItem(
+              ^^^^^^^^
+lib/main.dart:568:13: Error: 'GachaItem' is already declared in this scope.
+      const GachaItem(
+            ^^^^^^^^^
+lib/main.dart:561:13: Context: Previous declaration of 'GachaItem'.
+      const GachaItem(
+            ^^^^^^^^^
+lib/screens/colony_screen.dart:177:48: Error: Constant evaluation error:
+                  messenger.showSnackBar(const SnackBar(content: Text('ui_general_game_saved'.tr)));
+                                               ^
+lib/screens/colony_screen.dart:177:95: Context: Extension operations can't be used in constant expressions.
+                  messenger.showSnackBar(const SnackBar(content: Text('ui_general_game_saved'.tr)));
+                                                                                          ^
+Target kernel_snapshot_program failed: Exception
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildDebug'.
+> Process 'command 'C:\Users\USER-5\develop\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 9m 52s
+Running Gradle task 'assembleDebug'...                            593.8s
+Gradle task assembleDebug failed with exit code 1

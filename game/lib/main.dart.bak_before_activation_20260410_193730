@@ -1,0 +1,721 @@
+import 'package:mg_common_game/mg_common_game.dart';
+import 'package:mg_common_game/core/localization/localization.dart';
+import 'package:mg_common_game/core/ui/accessibility/accessibility_settings.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
+import 'core/game_state.dart';
+import 'core/population_manager.dart';
+import 'core/building_manager.dart';
+import 'screens/colony_screen.dart';
+import 'screens/collection_screen.dart';
+// import 'game/balancing_config.dart'; // BalancingManager not available
+// // import 'game/tutorial_config.dart'; // TutorialManager not available
+// import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
+// import 'package:mg_common_game/systems/quests/daily_quest_v2.dart';
+// import 'package:mg_common_game/core/ui/screens/daily_quest_screen_v2.dart';
+// import 'package:mg_common_game/l10n/localization.dart';
+import 'package:mg_common_game/l10n/extensions.dart';
+// 
+// ═══════════════════════════════════════════════════════════════════════
+// Colony Frontier -- MG-0023
+// Genre: Colony · Idle · Survival · Simulation · Strategy
+// ═══════════════════════════════════════════════════════════════════════
+// 
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+// 
+//   // Initialize Firebase Remote Config
+//         // Initialize Firebase Core
+//       try {
+//         await Firebase.initializeApp(
+//           options: DefaultFirebaseOptions.currentPlatform,
+//         );
+//         print('Firebase Core initialized successfully');
+//       } catch (e) {
+//         print('Failed to initialize Firebase Core: $e');
+//       }
+// 
+// try {
+//     final remoteConfig = FirebaseRemoteConfig.instance;
+//     await remoteConfig.setDefaults({
+//       'feature_iap_enabled': true,
+//       'feature_new_ui_enabled': false,
+//       'feature_daily_rewards_enabled': true,
+//       'feature_tutorial_enabled': true,
+//       'min_app_version': '1.0.0',
+//     });
+//     await remoteConfig.fetchAndActivate();
+//     print('Remote Config initialized successfully');
+//   } catch (e) {
+//     print('Failed to initialize Remote Config: $e');
+//   }
+// 
+// 
+//   // Dependency injection & data setup
+//   _registerManagers();
+//   _registerColonyUpgrades();
+//   _registerBuildingTemplates();
+// 
+//   // BattlePass 시스템
+//   GetIt.I.registerSingleton(BattlePassManager());
+//   // Gacha 시스템
+//   GetIt.I.registerSingleton(GachaManager());
+//   // Collection 시스템
+//   if (!GetIt.I.isRegistered<CollectionManager>()) {
+//     GetIt.I.registerSingleton(CollectionManager());
+//     _registerCollections();
+//   }
+//   // ── DailyQuest for DailyHub ───────────────────────────────
+//   if (!GetIt.I.isRegistered<DailyQuestManager>()) {
+//           // Daily Quest V2 - 7 Quest System with Streak Bonuses
+//       if (!GetIt.I.isRegistered<DailyQuestManagerV2>()) {
+//         final questManager = DailyQuestManagerV2();
+// 
+//         // Slot 0: Login Quest
+//         questManager.registerQuest(
+//           DailyQuestV2(
+//             id: 'quest_slot_0',
+//             title: 'Daily Login',
+//             description: 'Manage your world!',
+//             type: QuestType.login,
+//             tier: QuestTier.easy,
+//             targetValue: 1,
+//             baseGoldReward: 50,
+//             baseXpReward: 20,
+//           ),
+//           slotIndex: 0,
+//         );
+//         // Slot 1: Play Quest
+//         questManager.registerQuest(
+//           DailyQuestV2(
+//             id: 'quest_slot_1',
+//             title: 'Simulation Session',
+//             description: 'Play for 15 minutes',
+//             type: QuestType.play,
+//             tier: QuestTier.easy,
+//             targetValue: 15,
+//             baseGoldReward: 100,
+//             baseXpReward: 40,
+//           ),
+//           slotIndex: 1,
+//         );
+//         // Slot 2: Win Quest
+//         questManager.registerQuest(
+//           DailyQuestV2(
+//             id: 'quest_slot_2',
+//             title: 'Profit Master',
+//             description: 'Earn 10,000 coins',
+//             type: QuestType.win,
+//             tier: QuestTier.medium,
+//             targetValue: 10000,
+//             baseGoldReward: 150,
+//             baseXpReward: 60,
+//           ),
+//           slotIndex: 2,
+//         );
+//         // Slot 3: Upgrade Quest
+//         questManager.registerQuest(
+//           DailyQuestV2(
+//             id: 'quest_slot_3',
+//             title: 'Builder',
+//             description: 'Construct 5 buildings',
+//             type: QuestType.upgrade,
+//             tier: QuestTier.easy,
+//             targetValue: 5,
+//             baseGoldReward: 120,
+//             baseXpReward: 50,
+//           ),
+//           slotIndex: 3,
+//         );
+//         // Slot 4: Social Quest
+//         questManager.registerQuest(
+//           DailyQuestV2(
+//             id: 'quest_slot_4',
+//             title: 'Community',
+//             description: 'Visit 3 friends',
+//             type: QuestType.social,
+//             tier: QuestTier.easy,
+//             targetValue: 3,
+//             baseGoldReward: 100,
+//             baseXpReward: 40,
+//           ),
+//           slotIndex: 4,
+//         );
+//         // Slot 5: Achievement Quest
+//         questManager.registerQuest(
+//           DailyQuestV2(
+//             id: 'quest_slot_5',
+//             title: 'Expansion',
+//             description: 'Unlock 3 new areas',
+//             type: QuestType.achievement,
+//             tier: QuestTier.medium,
+//             targetValue: 3,
+//             baseGoldReward: 300,
+//             baseXpReward: 120,
+//           ),
+//           slotIndex: 5,
+//         );
+//         // Slot 6: Bonus Quest
+//         questManager.registerQuest(
+//           DailyQuestV2(
+//             id: 'quest_slot_6',
+//             title: 'Empire Builder',
+//             description: 'Reach 100 population',
+//             type: QuestType.bonus,
+//             tier: QuestTier.special,
+//             targetValue: 100,
+//             baseGoldReward: 350,
+//             baseXpReward: 140,
+//             baseGemReward: 12,
+//           ),
+//           slotIndex: 6,
+//         );
+// 
+//         // Setup streak bonus callbacks
+//         questManager.onStreakMilestoneReached = (streak) {
+//           if (GetIt.I.isRegistered<SettingsManager>()) {
+//             GetIt.I<SettingsManager>().triggerVibration(
+//               intensity: VibrationIntensity.heavy,
+//             );
+//           }
+//         };
+// 
+//         GetIt.I.registerSingleton(questManager);
+//         await questManager.loadQuestData();
+//         await questManager.checkAndResetIfNeeded();
+//       }
+//   }
+//   // ── Retention Systems for DailyHub ────────────────────────
+//   if (!GetIt.I.isRegistered<LoginRewardsManager>()) {
+//     GetIt.I.registerSingleton(LoginRewardsManager());
+//   }
+//   if (!GetIt.I.isRegistered<StreakManager>()) {
+//     GetIt.I.registerSingleton(StreakManager());
+//   }
+//   if (!GetIt.I.isRegistered<DailyChallengeManager>()) {
+//     GetIt.I.registerSingleton(DailyChallengeManager());
+//   }
+//   // ── P3 Engine Systems ─────────────────────────────────────
+//   if (!GetIt.I.isRegistered<GuildWarManager>()) {
+//     GetIt.I.registerSingleton(GuildWarManager());
+//   }
+//   if (!GetIt.I.isRegistered<TournamentManager>()) {
+//     GetIt.I.registerSingleton(TournamentManager());
+//   }
+//   if (!GetIt.I.isRegistered<SeasonalContentManager>()) {
+//     GetIt.I.registerSingleton(SeasonalContentManager());
+//   }
+//   _setupGacha();
+//   _setupBattlePass();
+//   runApp(
+//     MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(create: (_) => GameState()),
+//         ChangeNotifierProvider.value(
+//           value: GetIt.I<UpgradeManager>(),
+//         ),
+//         ChangeNotifierProvider.value(
+//           value: GetIt.I<PopulationManager>(),
+//         ),
+//       ],
+//       child: const ColonyApp(),
+//     ),
+//   );
+// }
+// 
+// ─── Manager Registration ──────────────────────────────────────────────
+// void _registerManagers() {
+//   final getIt = GetIt.I;
+// 
+//   getIt.registerSingleton<UpgradeManager>(UpgradeManager());
+//   getIt.registerSingleton<PopulationManager>(PopulationManager());
+//   getIt.registerSingleton<BuildingManager>(BuildingManager());
+// 
+//   // Prestige 시스템 (mg_common_game)
+//   if (!GetIt.I.isRegistered<PrestigeManager>()) {
+//     final prestigeManager = PrestigeManager();
+//     GetIt.I.registerSingleton(prestigeManager);
+//   // === Q8 DI Fix: Tutorial & Balancing ===
+//   if (!GetIt.I.isRegistered<TutorialManager>()) {
+//     final tutorialManager = TutorialManager();
+//     await tutorialManager.initialize();
+//     tutorialManager.registerTutorial(
+//       kOnboardingTutorial.id,
+//       kOnboardingTutorial.steps,
+//     );
+//     GetIt.I.registerSingleton<TutorialManager>(tutorialManager);
+//   }
+//   if (!GetIt.I.isRegistered<BalancingManager>()) {
+//     GetIt.I.registerSingleton<BalancingManager>(
+//       BalancingManager(defaultConfig: kDefaultBalancingConfig),
+//     );
+//   }
+//     _setupPrestige(prestigeManager);
+//   }
+// }
+// 
+// ─── Colony Upgrade Definitions (8 upgrades) ───────────────────────────
+// /// Upgrades are purchased with Research points.
+// /// Each upgrade boosts a specific aspect of colony production or efficiency.
+// void _registerColonyUpgrades() {
+//   final um = GetIt.I<UpgradeManager>();
+// 
+//   // 1. Mining -- iron production
+//   um.registerUpgrade(Upgrade(
+//     id: 'mining_drill',
+//     name: 'Mining Drill',
+//     description: 'Advanced drills increase iron output per building',
+//     maxLevel: 10,
+//     baseCost: 30,
+//     costMultiplier: 1.4,
+//     valuePerLevel: 0.15,
+//   ));
+// 
+//   // 2. Water -- extraction rate
+//   um.registerUpgrade(Upgrade(
+//     id: 'water_purifier',
+//     name: 'Water Purifier',
+//     description: 'High-efficiency filters boost water extraction rate',
+//     maxLevel: 10,
+//     baseCost: 30,
+//     costMultiplier: 1.4,
+//     valuePerLevel: 0.15,
+//   ));
+// 
+//   // 3. Energy -- solar output
+//   um.registerUpgrade(Upgrade(
+//     id: 'solar_array',
+//     name: 'Solar Array',
+//     description: 'Expanded solar collectors generate more energy',
+//     maxLevel: 10,
+//     baseCost: 25,
+//     costMultiplier: 1.35,
+//     valuePerLevel: 0.20,
+//   ));
+// 
+//   // 4. Food -- crop yield
+//   um.registerUpgrade(Upgrade(
+//     id: 'crop_genetics',
+//     name: 'Crop Genetics',
+//     description: 'Bio-engineered seeds improve hydroponic food yield',
+//     maxLevel: 10,
+//     baseCost: 40,
+//     costMultiplier: 1.45,
+//     valuePerLevel: 0.15,
+//   ));
+// 
+//   // 5. Oxygen -- reduced colonist O2 consumption
+//   um.registerUpgrade(Upgrade(
+//     id: 'air_recycler',
+//     name: 'Air Recycler',
+//     description: 'Recirculation system reduces oxygen consumption',
+//     maxLevel: 8,
+//     baseCost: 50,
+//     costMultiplier: 1.5,
+//     valuePerLevel: 0.10,
+//   ));
+// 
+//   // 6. Storage -- all resource caps
+//   um.registerUpgrade(Upgrade(
+//     id: 'cargo_bay',
+//     name: 'Cargo Bay',
+//     description: 'Expanded modules increase all resource storage capacity',
+//     maxLevel: 10,
+//     baseCost: 35,
+//     costMultiplier: 1.4,
+//     valuePerLevel: 0.25,
+//   ));
+// 
+//   // 7. Research -- output speed
+//   um.registerUpgrade(Upgrade(
+//     id: 'lab_equipment',
+//     name: 'Lab Equipment',
+//     description: 'Advanced instruments accelerate research output',
+//     maxLevel: 10,
+//     baseCost: 45,
+//     costMultiplier: 1.5,
+//     valuePerLevel: 0.20,
+//   ));
+// 
+//   // 8. Construction -- build cost reduction
+//   um.registerUpgrade(Upgrade(
+//     id: 'prefab_modules',
+//     name: 'Prefab Modules',
+//     description: 'Pre-fabricated parts reduce building construction costs',
+//     maxLevel: 8,
+//     baseCost: 60,
+//     costMultiplier: 1.6,
+//     valuePerLevel: 0.08,
+//   ));
+// }
+// 
+// ─── Building Template Definitions (8 templates) ───────────────────────
+// /// Templates define one-time construction cost, ongoing production,
+// /// ongoing consumption, storage bonuses, and housing capacity.
+// void _registerBuildingTemplates() {
+//   final bm = GetIt.I<BuildingManager>();
+// 
+//   bm.registerTemplate(const BuildingTemplate(
+//     id: 'solar_panel',
+//     name: 'Solar Panel',
+//     type: 'Energy',
+//     cost: {'iron': 10},
+//     production: {'energy': 1.0},
+//   ));
+// 
+//   bm.registerTemplate(const BuildingTemplate(
+//     id: 'water_extractor',
+//     name: 'Water Extractor',
+//     type: 'Water',
+//     cost: {'iron': 15},
+//     consumption: {'energy': 1.0},
+//     production: {'water': 1.0},
+//   ));
+// 
+//   bm.registerTemplate(const BuildingTemplate(
+//     id: 'oxygen_generator',
+//     name: 'O2 Generator',
+//     type: 'Oxygen',
+//     cost: {'iron': 20},
+//     consumption: {'energy': 1.0, 'water': 0.5},
+//     production: {'oxygen': 1.5},
+//   ));
+// 
+//   bm.registerTemplate(const BuildingTemplate(
+//     id: 'hydroponic_farm',
+//     name: 'Hydroponic Farm',
+//     type: 'Food',
+//     cost: {'iron': 25},
+//     consumption: {'water': 1.0, 'energy': 1.0},
+//     production: {'food': 1.0},
+//     requiredTech: 'tech_hydro',
+//   ));
+// 
+//   bm.registerTemplate(const BuildingTemplate(
+//     id: 'research_lab',
+//     name: 'Research Lab',
+//     type: 'Research',
+//     cost: {'iron': 30},
+//     consumption: {'energy': 2.0},
+//     production: {'research': 1.0},
+//   ));
+// 
+//   bm.registerTemplate(const BuildingTemplate(
+//     id: 'warehouse',
+//     name: 'Warehouse',
+//     type: 'Storage',
+//     cost: {'iron': 20},
+//     storageIncrease: {
+//       'iron': 100,
+//       'water': 100,
+//       'oxygen': 100,
+//       'energy': 100,
+//       'food': 100,
+//     },
+//   ));
+// 
+//   bm.registerTemplate(const BuildingTemplate(
+//     id: 'habitat',
+//     name: 'Habitat Module',
+//     type: 'Housing',
+//     cost: {'iron': 40},
+//     consumption: {'energy': 2.0},
+//     housingCapacity: 10,
+//   ));
+// 
+//   bm.registerTemplate(const BuildingTemplate(
+//     id: 'nuclear_reactor',
+//     name: 'Nuclear Reactor',
+//     type: 'Energy',
+//     cost: {'iron': 100},
+//     production: {'energy': 50.0},
+//     requiredTech: 'tech_adv_power',
+//   ));
+// }
+// 
+// ─── App Widget ────────────────────────────────────────────────────────
+// class ColonyApp extends StatelessWidget {
+//   const ColonyApp({super.key});
+// 
+//   @override
+//   Widget build(BuildContext context) {
+//     return MGAccessibilityProvider(
+//       settings: MGAccessibilitySettings.defaults,
+//       onSettingsChanged: (settings) {
+//         // Settings updated
+//       },
+//       child: MaterialApp(
+//       title: 'Colony Frontier',
+//       supportedLocales: mgSupportedLocales,
+//       localizationsDelegates: mgLocalizationDelegates,
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         brightness: Brightness.dark,
+//         primarySwatch: Colors.blue,
+//         scaffoldBackgroundColor: const Color(0xFF0F172A),
+//         useMaterial3: true,
+//         cardTheme: const CardThemeData(
+//           color: Color(0xFF1E293B),
+//           elevation: 2,
+//         ),
+//         appBarTheme: const AppBarTheme(
+//           backgroundColor: Color(0xFF0F172A),
+//           elevation: 0,
+//         ),
+//         floatingActionButtonTheme: const FloatingActionButtonThemeData(
+//           backgroundColor: Color(0xFF3B82F6),
+//           foregroundColor: MGColors.textHighEmphasis,
+//         ),
+//         snackBarTheme: const SnackBarThemeData(
+//           backgroundColor: Color(0xFF334155),
+//           contentTextStyle: TextStyle(color: MGColors.textHighEmphasis),
+//         ),
+//       ),
+//       routes: {
+//         '/daily-hub': (context) => DailyHubScreen(
+//           questManager: GetIt.I<DailyQuestManager>(),
+//           loginRewardsManager: GetIt.I<LoginRewardsManager>(),
+//           streakManager: GetIt.I<StreakManager>(),
+//           challengeManager: GetIt.I<DailyChallengeManager>(),
+//           accentColor: MGColors.primaryAction,
+//           onClose: () => Navigator.pop(context),
+//         ),
+//       
+//         '/collection': (context) => CollectionScreen(
+//           collectionManager: GetIt.I<CollectionManager>(),
+//         ),
+//         '/guild-war': (context) => GuildWarScreen(
+//           guildWarManager: GetIt.I<GuildWarManager>(),
+//           accentColor: MGColors.primaryAction,
+//           onClose: () => Navigator.pop(context),
+//           ),
+//         '/tournament': (context) => TournamentScreen(
+//           tournamentManager: GetIt.I<TournamentManager>(),
+//           accentColor: MGColors.primaryAction,
+//           onClose: () => Navigator.pop(context),
+//           ),
+//         '/seasonal-event': (context) => SeasonalEventScreen(
+//           seasonalContentManager: GetIt.I<SeasonalContentManager>(),
+//           accentColor: MGColors.primaryAction,
+//           onClose: () => Navigator.pop(context),
+//         ),
+//       },
+//       home: const ColonyScreen(),
+//     ),
+//     );
+//   }
+// }
+// 
+// 
+// void _setupBattlePass() {
+//   final bp = GetIt.I<BattlePassManager>();
+// 
+//   final season = BPSeasonBuilder.create28DaySeason(
+//     id: 'season_1',
+//     nameKr: '시즌 1',
+//     startDate: DateTime.now().subtract(const Duration(days: 1)),
+//     maxLevel: 50,
+//     expPerLevel: 1000,
+//   );
+// 
+//   bp.setSeason(season);
+//   bp.setMissions(
+//     daily: BPSeasonBuilder.createDefaultDailyMissions(),
+//     weekly: BPSeasonBuilder.createDefaultWeeklyMissions(),
+//   );
+// }
+// 
+// 
+// void _setupGacha() {
+//   final gacha = GetIt.I<GachaManager>();
+// 
+//   gacha.registerPool(GachaPool(
+//     id: 'standard_pool',
+//     nameKr: '스탠다드 뽑기',
+//     items: [
+//       // N (50%)
+      ...List.generate(20, (i) => GachaItem(
+        id: 'n_item_$i',
+        nameKr: '일반 아이템 $i',
+        rarity: GachaRarity.normal,
+      )),
+
+      // R (35%)
+      ...List.generate(10, (i) => GachaItem(
+        id: 'r_item_$i',
+        nameKr: '레어 아이템 $i',
+        rarity: GachaRarity.rare,
+      )),
+
+      // SR (12%)
+      ...List.generate(5, (i) => GachaItem(
+        id: 'sr_item_$i',
+        nameKr: '슈퍼레어 아이템 $i',
+        rarity: GachaRarity.superRare,
+      )),
+
+      // SSR (2.7%)
+      const GachaItem(
+        id: 'ssr_item_1',
+        nameKr: '울트라레어 아이템 1',
+        rarity: GachaRarity.ultraRare,
+      ),
+
+      // UR (0.3%)
+      const GachaItem(
+        id: 'ur_item_1',
+        nameKr: '레전더리 아이템 1',
+        rarity: GachaRarity.legendary,
+      ),
+    ],
+  ));
+}
+
+void _setupPrestige(PrestigeManager manager) {
+  // ── Prestige Upgrades (idle game defaults) ──────────────────
+  // Five core upgrades for idle games
+  manager.registerPrestigeUpgrade(PrestigeUpgrade(
+    id: 'gold_multiplier',
+    name: '골드 배수',
+    description: '골드 획득량 +10%',
+    maxLevel: 50,
+    costPerLevel: 1,
+    bonusPerLevel: 0.1,
+  ));
+
+  manager.registerPrestigeUpgrade(PrestigeUpgrade(
+    id: 'xp_boost',
+    name: 'XP 부스트',
+    description: 'XP 획득량 +15%',
+    maxLevel: 40,
+    costPerLevel: 2,
+    bonusPerLevel: 0.15,
+  ));
+
+  manager.registerPrestigeUpgrade(PrestigeUpgrade(
+    id: 'production_speed',
+    name: '생산 속도',
+    description: '생산 속도 +20%',
+    maxLevel: 30,
+    costPerLevel: 2,
+    bonusPerLevel: 0.2,
+  ));
+
+  manager.registerPrestigeUpgrade(PrestigeUpgrade(
+    id: 'starting_resources',
+    name: '초기 자원',
+    description: '초기 자원 +5%',
+    maxLevel: 60,
+    costPerLevel: 1,
+    bonusPerLevel: 0.05,
+  ));
+
+  manager.registerPrestigeUpgrade(PrestigeUpgrade(
+    id: 'offline_income',
+    name: '오프라인 수익',
+    description: '오프라인 수익 +20%',
+    maxLevel: 30,
+    costPerLevel: 3,
+    bonusPerLevel: 0.2,
+  ));
+
+  // ── Prestige Reset Callbacks ────────────────────────────────
+  // TODO: Add game-specific reset callbacks:
+  // manager.registerResetCallback(() {
+  //   if (GetIt.I.isRegistered<ProgressionManager>()) {
+  //     GetIt.I<ProgressionManager>().reset();
+  //   }
+  //   if (GetIt.I.isRegistered<UpgradeManager>()) {
+  //     GetIt.I<UpgradeManager>().reset();
+  //   }
+  // });
+}
+
+void _registerCollections() {
+  final collection = GetIt.I<CollectionManager>();
+
+  // Characters 컬렉션
+  collection.registerCollection(Collection(
+    id: 'characters',
+    name: '캐릭터',
+    description: '모든 캐릭터를 수집하세요',
+    items: [
+      const CollectionItem(
+        id: 'char_warrior',
+        name: '전사',
+        description: '강인한 근접 전투 캐릭터',
+        rarity: CollectionRarity.common,
+      ),
+      const CollectionItem(
+        id: 'char_mage',
+        name: '마법사',
+        description: '강력한 마법 공격 캐릭터',
+        rarity: CollectionRarity.rare,
+      ),
+      const CollectionItem(
+        id: 'char_archer',
+        name: '궁수',
+        description: '원거리 정밀 공격 캐릭터',
+        rarity: CollectionRarity.rare,
+      ),
+      const CollectionItem(
+        id: 'char_assassin',
+        name: '암살자',
+        description: '치명적인 은신 공격 캐릭터',
+        rarity: CollectionRarity.epic,
+      ),
+      const CollectionItem(
+        id: 'char_healer',
+        name: '힐러',
+        description: '팀을 치유하는 지원 캐릭터',
+        rarity: CollectionRarity.legendary,
+      ),
+    ],
+    completionReward: const CollectionReward(type: RewardType.gold, amount: 10000),
+    milestoneRewards: {
+      25: const CollectionReward(type: RewardType.gold, amount: 1000),
+      50: const CollectionReward(type: RewardType.gold, amount: 3000),
+      75: const CollectionReward(type: RewardType.gold, amount: 5000),
+    },
+  ));
+
+  // 아이템 해제 콜백 (햅틱 피드백)
+  collection.onItemUnlocked = (collectionId, itemId) {
+    // SettingsManager가 등록되어 있으면 햅틱 피드백
+    debugPrint('Collection item unlocked: $collectionId / $itemId');
+  };
+}
+
+void _registerDailyQuests() {
+  final dailyQuest = GetIt.I<DailyQuestManager>();
+
+  dailyQuest.registerQuest(DailyQuest(
+    id: 'manage_population',
+    title: '인구 관리',
+    description: '인구 50명 증가',
+    targetValue: 50,
+    goldReward: 500,
+    xpReward: 10,
+  ));
+
+  dailyQuest.registerQuest(DailyQuest(
+    id: 'extract_resources',
+    title: '자원 채굴',
+    description: '자원 200 채굴',
+    targetValue: 200,
+    goldReward: 300,
+    xpReward: 5,
+  ));
+
+  dailyQuest.registerQuest(DailyQuest(
+    id: 'construct_buildings',
+    title: '건물 건설',
+    description: '건물 4개 건설',
+    targetValue: 4,
+    goldReward: 200,
+    xpReward: 3,
+  ));
+}
