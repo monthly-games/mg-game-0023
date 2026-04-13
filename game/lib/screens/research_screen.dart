@@ -1,7 +1,10 @@
+import 'package:mg_common_game/core/ui/layout/mg_spacing.dart';
+import 'package:mg_common_game/core/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/game_state.dart';
-import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';import 'package:mg_common_game/l10n/localization.dart';
+
 
 class ResearchScreen extends StatelessWidget {
   const ResearchScreen({super.key});
@@ -12,7 +15,7 @@ class ResearchScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Research Lab'),
+        title: Text('ui_general_research_lab_3'.tr),
         actions: [
           Center(
             child: Padding(
@@ -26,7 +29,7 @@ class ResearchScreen extends StatelessWidget {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(MGSpacing.md),
         children: [
           _TechCard(
             id: 'tech_adv_power',
@@ -78,7 +81,7 @@ class _TechCard extends StatelessWidget {
             ? const Icon(Icons.check, color: MGColors.success)
             : ElevatedButton(
                 onPressed: onUnlock,
-                child: Text('Unlock (${cost.toStringAsFixed(0)})'),
+                child: Text('notification_unlock_costtostringasfixed0'.tr),
               ),
       ),
     );

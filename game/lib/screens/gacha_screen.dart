@@ -1,5 +1,6 @@
 // ============================================================
-// Gacha Screen — MG-0023 Colony Frontier
+import 'package:mg_common_game/core/localization/localization.dart';
+// Gacha Screen -- MG-0023 Colony Frontier
 // Genre: Colony · Idle · Survival · Simulation · Strategy
 //
 // Firebase Analytics Events:
@@ -9,7 +10,8 @@
 //   - gacha_history_viewed: History/collection tab opened
 //
 // Based on MG-0006 canonical template, adapted for Colony Builder.
-// ============================================================
+// ============================================================import 'package:mg_common_game/l10n/localization.dart';
+
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -207,7 +209,7 @@ class _GachaScreenState extends State<GachaScreen>
                 Padding(
                   padding: const EdgeInsets.all(MGSpacing.lg),
                   child: MGButton(
-                    label: 'OK',
+                    label: 'ui_general_diwali_token_collection'.tr,
                     onPressed: _dismissResults,
                     size: MGButtonSize.large,
                     width: double.infinity,
@@ -578,7 +580,7 @@ class _GachaScreenState extends State<GachaScreen>
         // Single pull
         Expanded(
           child: GachaPullButton(
-            label: '1x Pull',
+            label: 'ui_general_1x_pull'.tr,
             cost: _kSinglePullCost,
             onPressed: _onSinglePull,
           ),
@@ -587,7 +589,7 @@ class _GachaScreenState extends State<GachaScreen>
         // Multi pull (10x)
         Expanded(
           child: GachaPullButton(
-            label: '10x Pull',
+            label: 'ui_general_10x_pull'.tr,
             cost: _kMultiPullCost,
             onPressed: _onMultiPull,
           ),
@@ -822,6 +824,7 @@ class _GachaScreenState extends State<GachaScreen>
       GachaRarity.superRare => MGColors.epic,
       GachaRarity.ultraRare => MGColors.legendary,
       GachaRarity.legendary => MGColors.mythic,
+      GachaRarity.superRare => MGColors.mythic,
     };
   }
 

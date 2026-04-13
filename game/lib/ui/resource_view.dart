@@ -1,7 +1,10 @@
+import 'package:mg_common_game/core/ui/layout/mg_spacing.dart';
+import 'package:mg_common_game/core/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/game_state.dart';
-import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';import 'package:mg_common_game/l10n/localization.dart';
+
 
 class ResourceView extends StatelessWidget {
   const ResourceView({super.key});
@@ -20,14 +23,14 @@ class ResourceView extends StatelessWidget {
             icon: Icons.grid_on,
             value: state.iron,
             max: state.getMax('iron'),
-            label: 'Iron',
+            label: 'ui_general_iron_hold_lobby'.tr,
             color: MGColors.common,
           ),
           _ResourceItem(
             icon: Icons.water_drop,
             value: state.water,
             max: state.getMax('water'),
-            label: 'Water',
+            label: 'ui_general_water_extractor'.tr,
             color: MGColors.info,
           ),
           _ResourceItem(
@@ -41,14 +44,14 @@ class ResourceView extends StatelessWidget {
             icon: Icons.flash_on,
             value: state.energy,
             max: state.getMax('energy'),
-            label: 'Power',
+            label: 'ui_general_cp_agentcurrentcombatpower'.tr,
             color: Colors.yellow,
           ),
           _ResourceItem(
             icon: Icons.restaurant,
             value: state.food,
             max: state.getMax('food'),
-            label: 'Food',
+            label: 'ui_general_produces_1_foods'.tr,
             color: MGColors.success,
           ),
         ],
@@ -78,7 +81,7 @@ class _ResourceItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(icon, color: color, size: 20),
-        const SizedBox(height: 4),
+        const SizedBox(height: MGSpacing.xxs),
         Text(
           '${value.toStringAsFixed(0)} / ${max.toStringAsFixed(0)}',
           style: TextStyle(

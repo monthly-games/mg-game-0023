@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mg_common_game/core/localization/localization.dart';
 import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 import 'package:mg_common_game/core/ui/layout/mg_spacing.dart';
 import 'package:mg_common_game/core/ui/typography/mg_text_styles.dart';
 import 'package:mg_common_game/core/ui/widgets/buttons/mg_button.dart';
-import 'package:mg_common_game/core/ui/widgets/progress/mg_progress.dart';
+import 'package:mg_common_game/core/ui/widgets/progress/mg_progress.dart';import 'package:mg_common_game/l10n/localization.dart';
+
 
 /// MG-0023 Colony Frontier HUD
 /// 우주 식민지 시뮬레이션 게임용 HUD - 자원, 인구, 연구 포인트 표시
@@ -135,7 +138,7 @@ class MGColonyHud extends StatelessWidget {
               Expanded(
                 child: _buildResourceBar(
                   icon: Icons.bolt,
-                  label: 'Energy',
+                  label: 'ui_general_playerenergy'.tr,
                   value: energy,
                   maxValue: maxEnergy,
                   color: Colors.yellow,
@@ -145,7 +148,7 @@ class MGColonyHud extends StatelessWidget {
               Expanded(
                 child: _buildResourceBar(
                   icon: Icons.water_drop,
-                  label: 'Water',
+                  label: 'ui_general_water_extractor'.tr,
                   value: water,
                   maxValue: maxWater,
                   color: MGColors.info,
@@ -170,7 +173,7 @@ class MGColonyHud extends StatelessWidget {
               Expanded(
                 child: _buildResourceBar(
                   icon: Icons.restaurant,
-                  label: 'Food',
+                  label: 'ui_general_produces_1_foods'.tr,
                   value: food,
                   maxValue: maxFood,
                   color: MGColors.success,
@@ -182,7 +185,7 @@ class MGColonyHud extends StatelessWidget {
           // 3행: Iron
           _buildResourceBar(
             icon: Icons.construction,
-            label: 'Iron',
+            label: 'ui_general_iron_hold_lobby'.tr,
             value: iron,
             maxValue: maxIron,
             color: MGColors.common,
@@ -335,4 +338,34 @@ class MGColonyHud extends StatelessWidget {
       ],
     );
   }
+
+
+  Widget _buildSpineCharacter() {
+    return GestureDetector(
+      onTap: () {
+        HapticFeedback.lightImpact();
+      },
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.orange.withValues(alpha: 0.6),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.orange.withAlpha(150), width: 2),
+        ),
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.person, size: 24, color: Colors.white),
+            SizedBox(height: 2),
+            Text(
+              'Chef',
+              style: TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 }

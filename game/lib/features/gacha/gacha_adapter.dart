@@ -53,30 +53,30 @@ class ColonistGachaAdapter extends ChangeNotifier {
   List<GachaItem> _generateItems() {
     return [
       // UR (0.6%)
-      const GachaItem(id: 'ur_colony_001', nameKr: '전설의 Colonist', rarity: GachaRarity.ultraRare),
-      const GachaItem(id: 'ur_colony_002', nameKr: '신화의 Colonist', rarity: GachaRarity.ultraRare),
+      GachaItem(id: 'ur_colony_001', nameKr: '전설의 Colonist', rarity: GachaRarity.ultraRare),
+      GachaItem(id: 'ur_colony_002', nameKr: '신화의 Colonist', rarity: GachaRarity.ultraRare),
       // SSR (2.4%)
-      const GachaItem(id: 'ssr_colony_001', nameKr: '영웅의 Colonist', rarity: GachaRarity.superRare),
-      const GachaItem(id: 'ssr_colony_002', nameKr: '고대의 Colonist', rarity: GachaRarity.superRare),
-      const GachaItem(id: 'ssr_colony_003', nameKr: '황금의 Colonist', rarity: GachaRarity.superRare),
+      GachaItem(id: 'ssr_colony_001', nameKr: '영웅의 Colonist', rarity: GachaRarity.superRare),
+      GachaItem(id: 'ssr_colony_002', nameKr: '고대의 Colonist', rarity: GachaRarity.superRare),
+      GachaItem(id: 'ssr_colony_003', nameKr: '황금의 Colonist', rarity: GachaRarity.superRare),
       // SR (12%)
-      const GachaItem(id: 'sr_colony_001', nameKr: '희귀한 Colonist A', rarity: GachaRarity.superRare),
-      const GachaItem(id: 'sr_colony_002', nameKr: '희귀한 Colonist B', rarity: GachaRarity.superRare),
-      const GachaItem(id: 'sr_colony_003', nameKr: '희귀한 Colonist C', rarity: GachaRarity.superRare),
-      const GachaItem(id: 'sr_colony_004', nameKr: '희귀한 Colonist D', rarity: GachaRarity.superRare),
+      GachaItem(id: 'sr_colony_001', nameKr: '희귀한 Colonist A', rarity: GachaRarity.superRare),
+      GachaItem(id: 'sr_colony_002', nameKr: '희귀한 Colonist B', rarity: GachaRarity.superRare),
+      GachaItem(id: 'sr_colony_003', nameKr: '희귀한 Colonist C', rarity: GachaRarity.superRare),
+      GachaItem(id: 'sr_colony_004', nameKr: '희귀한 Colonist D', rarity: GachaRarity.superRare),
       // R (35%)
-      const GachaItem(id: 'r_colony_001', nameKr: '우수한 Colonist A', rarity: GachaRarity.rare),
-      const GachaItem(id: 'r_colony_002', nameKr: '우수한 Colonist B', rarity: GachaRarity.rare),
-      const GachaItem(id: 'r_colony_003', nameKr: '우수한 Colonist C', rarity: GachaRarity.rare),
-      const GachaItem(id: 'r_colony_004', nameKr: '우수한 Colonist D', rarity: GachaRarity.rare),
-      const GachaItem(id: 'r_colony_005', nameKr: '우수한 Colonist E', rarity: GachaRarity.rare),
+      GachaItem(id: 'r_colony_001', nameKr: '우수한 Colonist A', rarity: GachaRarity.rare),
+      GachaItem(id: 'r_colony_002', nameKr: '우수한 Colonist B', rarity: GachaRarity.rare),
+      GachaItem(id: 'r_colony_003', nameKr: '우수한 Colonist C', rarity: GachaRarity.rare),
+      GachaItem(id: 'r_colony_004', nameKr: '우수한 Colonist D', rarity: GachaRarity.rare),
+      GachaItem(id: 'r_colony_005', nameKr: '우수한 Colonist E', rarity: GachaRarity.rare),
       // N (50%)
-      const GachaItem(id: 'n_colony_001', nameKr: '일반 Colonist A', rarity: GachaRarity.normal),
-      const GachaItem(id: 'n_colony_002', nameKr: '일반 Colonist B', rarity: GachaRarity.normal),
-      const GachaItem(id: 'n_colony_003', nameKr: '일반 Colonist C', rarity: GachaRarity.normal),
-      const GachaItem(id: 'n_colony_004', nameKr: '일반 Colonist D', rarity: GachaRarity.normal),
-      const GachaItem(id: 'n_colony_005', nameKr: '일반 Colonist E', rarity: GachaRarity.normal),
-      const GachaItem(id: 'n_colony_006', nameKr: '일반 Colonist F', rarity: GachaRarity.normal),
+      GachaItem(id: 'n_colony_001', nameKr: '일반 Colonist A', rarity: GachaRarity.normal),
+      GachaItem(id: 'n_colony_002', nameKr: '일반 Colonist B', rarity: GachaRarity.normal),
+      GachaItem(id: 'n_colony_003', nameKr: '일반 Colonist C', rarity: GachaRarity.normal),
+      GachaItem(id: 'n_colony_004', nameKr: '일반 Colonist D', rarity: GachaRarity.normal),
+      GachaItem(id: 'n_colony_005', nameKr: '일반 Colonist E', rarity: GachaRarity.normal),
+      GachaItem(id: 'n_colony_006', nameKr: '일반 Colonist F', rarity: GachaRarity.normal),
     ];
   }
 

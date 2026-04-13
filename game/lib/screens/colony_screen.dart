@@ -1,3 +1,5 @@
+import 'package:mg_common_game/core/ui/layout/mg_spacing.dart';
+import 'package:mg_common_game/core/localization/localization.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +12,8 @@ import '../ui/sprite_clipper.dart';
 import 'battlepass_screen.dart';
 import 'gacha_screen.dart';
 import 'research_screen.dart';
-import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';import 'package:mg_common_game/l10n/localization.dart';
+
 
 class ColonyScreen extends StatefulWidget {
   const ColonyScreen({super.key});
@@ -60,7 +63,7 @@ class _ColonyScreenState extends State<ColonyScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Colony Frontier'),
+        title: Text('ui_general_colony_frontier'.tr),
         actions: [
           IconButton(
             icon: const Icon(Icons.military_tech),
@@ -128,7 +131,7 @@ class _ColonyScreenState extends State<ColonyScreen> {
                   Container(
                     color: MGColors.error.withValues(alpha: 0.8),
                     width: double.infinity,
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(MGSpacing.xs),
                     child: const Text(
                       'CRITICAL ALERT: VITAL RESOURCES DEPLETED!',
                       textAlign: TextAlign.center,
@@ -159,7 +162,7 @@ class _ColonyScreenState extends State<ColonyScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Settings'),
+        title: Text('settings_settings_coming_soon'.tr),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -171,12 +174,12 @@ class _ColonyScreenState extends State<ColonyScreen> {
                 final manager = PersistenceManager();
                 await manager.saveGame(state);
                 if (mounted) {
-                  messenger.showSnackBar(const SnackBar(content: Text('Game Saved!')));
+                  messenger.showSnackBar(const SnackBar(content: Text('ui_general_game_saved'.tr)));
                 }
               },
-              child: const Text('Save Game'),
+              child: Text('ui_general_save_game'.tr),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: MGSpacing.xsMd),
             ElevatedButton(
               onPressed: () async {
                 Navigator.pop(ctx);
@@ -192,7 +195,7 @@ class _ColonyScreenState extends State<ColonyScreen> {
                   );
                 }
               },
-              child: const Text('Load Game'),
+              child: Text('ui_general_load_game'.tr),
             ),
           ],
         ),
@@ -223,7 +226,7 @@ class _ColonyGrid extends StatelessWidget {
     }
 
     return GridView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(MGSpacing.md),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
         crossAxisSpacing: 8,
@@ -243,7 +246,7 @@ class _ColonyGrid extends StatelessWidget {
             children: [
               // Sprite Logic
               _buildBuildingSprite(building.type, building.id),
-              const SizedBox(height: 4),
+              const SizedBox(height: MGSpacing.xxs),
               Text(
                 building.name,
                 textAlign: TextAlign.center,
@@ -287,7 +290,7 @@ class _BuildMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(MGSpacing.md),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -296,12 +299,12 @@ class _BuildMenu extends StatelessWidget {
             'Construction',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: MGSpacing.md),
           ListTile(
             leading: const Icon(Icons.flash_on, color: Colors.yellow),
-            title: const Text('Solar Panel'),
-            subtitle: const Text('Produces 1 Energy/s'),
-            trailing: const Text('Free (Proto)'),
+            title: Text('ui_general_solar_panel'.tr),
+            subtitle: Text('ui_general_produces_1_energys'.tr),
+            trailing: Text('ui_general_free_proto'.tr),
             onTap: () {
               FlameAudio.play('sfx_build.wav');
               context.read<GameState>().addBuilding(
@@ -317,9 +320,9 @@ class _BuildMenu extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.water_drop, color: MGColors.info),
-            title: const Text('Water Extractor'),
-            subtitle: const Text('Consumes 1 Energy, Produces 1 Water'),
-            trailing: const Text('Free (Proto)'),
+            title: Text('ui_general_water_extractor'.tr),
+            subtitle: Text('ui_general_consumes_1_energy_produces_1'.tr),
+            trailing: Text('ui_general_free_proto'.tr),
             onTap: () {
               FlameAudio.play('sfx_build.wav');
               context.read<GameState>().addBuilding(
@@ -336,9 +339,9 @@ class _BuildMenu extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.warehouse, color: MGColors.common),
-            title: const Text('Small Warehouse'),
-            subtitle: const Text('+100 to All Storage'),
-            trailing: const Text('Free (Proto)'),
+            title: Text('ui_general_small_warehouse'.tr),
+            subtitle: Text('ui_general_100_to_all_storage'.tr),
+            trailing: Text('ui_general_free_proto'.tr),
             onTap: () {
               FlameAudio.play('sfx_build.wav');
               context.read<GameState>().addBuilding(
@@ -360,9 +363,9 @@ class _BuildMenu extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.science, color: Colors.purple),
-            title: const Text('Research Lab'),
-            subtitle: const Text('Produces 1 Research/s'),
-            trailing: const Text('Free (Proto)'),
+            title: Text('ui_general_research_lab_3'.tr),
+            subtitle: Text('ui_general_produces_1_researchs'.tr),
+            trailing: Text('ui_general_free_proto'.tr),
             onTap: () {
               FlameAudio.play('sfx_build.wav');
               context.read<GameState>().addBuilding(
@@ -381,8 +384,8 @@ class _BuildMenu extends StatelessWidget {
           ))
             ListTile(
               leading: const Icon(Icons.flash_on, color: MGColors.warning),
-              title: const Text('Nuclear Reactor'),
-              subtitle: const Text('Produces 50 Energy/s'),
+              title: Text('ui_general_nuclear_reactor'.tr),
+              subtitle: Text('ui_general_produces_50_energys'.tr),
               trailing: const Text('Tech'),
               onTap: () {
                 context.read<GameState>().addBuilding(
@@ -402,8 +405,8 @@ class _BuildMenu extends StatelessWidget {
                 Icons.local_florist,
                 color: Colors.greenAccent,
               ),
-              title: const Text('Hydroponics Farm'),
-              subtitle: const Text('Produces 1 Food/s'),
+              title: Text('ui_general_hydroponics_farm'.tr),
+              subtitle: Text('ui_general_produces_1_foods'.tr),
               trailing: const Text('Tech'),
               onTap: () {
                 context.read<GameState>().addBuilding(

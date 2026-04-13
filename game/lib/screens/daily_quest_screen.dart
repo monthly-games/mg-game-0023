@@ -1,10 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:mg_common_game/core/localization/localization.dart';
 // ============================================================
-// Daily Quest Screen — MG-0023 Colony Frontier
+// Daily Quest Screen -- MG-0023 Colony Frontier
 // Genre: Crossgame / Raid / Event · Retention System UI
 //
 // Template: Based on MG-0024 canonical template.
-// ============================================================
+// ============================================================import 'package:mg_common_game/l10n/localization.dart';
+
 
 import 'dart:async';
 
@@ -291,7 +293,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
               const Spacer(),
               if (isClaimable)
                 MGButton(
-                  label: 'Claim',
+                  label: 'notification_rewardslength_rewards_claimed'.tr,
                   size: MGButtonSize.small,
                   icon: Icons.card_giftcard_rounded,
                   backgroundColor: MGColors.success,
