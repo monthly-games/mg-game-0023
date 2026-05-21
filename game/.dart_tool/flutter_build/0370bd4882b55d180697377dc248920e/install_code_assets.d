@@ -1,1 +1,0 @@
- D:\\mg-games\\repos\\mg-game-0023\\game\\.dart_tool\\flutter_build\\0370bd4882b55d180697377dc248920e\\native_assets.json: 
