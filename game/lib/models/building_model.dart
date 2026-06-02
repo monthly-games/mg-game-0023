@@ -9,6 +9,8 @@ class Building extends Equatable {
   final Map<String, double> storageIncrease; // resource: amount
   final String? requiredTech; // Tech ID needed to build
   final bool isActive;
+  final int gridX; // 그리드 X 위치 (시너지 계산용)
+  final int gridY; // 그리드 Y 위치 (시너지 계산용)
 
   const Building({
     required this.id,
@@ -19,6 +21,8 @@ class Building extends Equatable {
     this.storageIncrease = const {},
     this.requiredTech,
     this.isActive = true,
+    this.gridX = 0,
+    this.gridY = 0,
   });
 
   Map<String, dynamic> toJson() {
@@ -31,6 +35,8 @@ class Building extends Equatable {
       'storageIncrease': storageIncrease,
       'requiredTech': requiredTech,
       'isActive': isActive,
+      'gridX': gridX,
+      'gridY': gridY,
     };
   }
 
@@ -44,6 +50,34 @@ class Building extends Equatable {
       storageIncrease: Map<String, double>.from(json['storageIncrease'] ?? {}),
       requiredTech: json['requiredTech'] as String?,
       isActive: json['isActive'] as bool? ?? true,
+      gridX: json['gridX'] as int? ?? 0,
+      gridY: json['gridY'] as int? ?? 0,
+    );
+  }
+
+  Building copyWith({
+    String? id,
+    String? name,
+    String? type,
+    Map<String, double>? production,
+    Map<String, double>? consumption,
+    Map<String, double>? storageIncrease,
+    String? requiredTech,
+    bool? isActive,
+    int? gridX,
+    int? gridY,
+  }) {
+    return Building(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      type: type ?? this.type,
+      production: production ?? this.production,
+      consumption: consumption ?? this.consumption,
+      storageIncrease: storageIncrease ?? this.storageIncrease,
+      requiredTech: requiredTech ?? this.requiredTech,
+      isActive: isActive ?? this.isActive,
+      gridX: gridX ?? this.gridX,
+      gridY: gridY ?? this.gridY,
     );
   }
 
@@ -57,5 +91,7 @@ class Building extends Equatable {
     storageIncrease,
     requiredTech,
     isActive,
+    gridX,
+    gridY,
   ];
 }

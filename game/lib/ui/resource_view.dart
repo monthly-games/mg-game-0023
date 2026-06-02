@@ -3,7 +3,7 @@ import 'package:mg_common_game/core/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/game_state.dart';
-import 'package:mg_common_game/core/ui/theme/mg_colors.dart';import 'package:mg_common_game/l10n/localization.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 
 class ResourceView extends StatelessWidget {

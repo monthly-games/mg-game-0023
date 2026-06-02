@@ -1,5 +1,21 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - lib/*_backup.dart
+    - lib/**/*_backup.dart
+    - lib/*.bak*
+    - lib/**/*.bak*
+    - lib/main_backup.dart
+    - lib/**/main_backup.dart
+    - lib/firebase_options.dart
+    - integration_test_backup/**
+  errors:
+    # Wasm interop warnings are expected due to flame_spine -> wasm_ffi dependency
+    # These are safe to ignore as we use JS compilation for web
+    invalid_runtime_check_with_js_interop_types: ignore
+
 linter:
   rules:
-    # Add project-specific lint rules here
+    # Add project-specific lint rules here.
+    prefer_const_constructors: false

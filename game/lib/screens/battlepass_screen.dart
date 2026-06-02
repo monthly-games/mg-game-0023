@@ -176,7 +176,7 @@ class _BattlePassScreenState extends State<BattlePassScreen>
     final names = rewards.map((r) => r.nameKr).join(', ');
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('progress_tier_level_names'.tr),
+        content: Text('Level $level rewards claimed: $names'),
         backgroundColor: MGColors.success,
         duration: const Duration(seconds: 2),
       ),

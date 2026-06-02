@@ -1,0 +1,434 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1779755678886,
+  "projectRoot": "D:\\mg-games\\repos\\mg-game-0023",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "assets",
+      "docs",
+      "lib"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "analytics": {
+      "path": "analytics",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1779755678866,
+      "keyFiles": []
+    },
+    "assets": {
+      "path": "assets",
+      "purpose": "Static assets",
+      "fileCount": 0,
+      "lastAccessed": 1779755678867,
+      "keyFiles": []
+    },
+    "backend": {
+      "path": "backend",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1779755678868,
+      "keyFiles": []
+    },
+    "config": {
+      "path": "config",
+      "purpose": "Configuration files",
+      "fileCount": 1,
+      "lastAccessed": 1779755678868,
+      "keyFiles": [
+        "game_manifest.json"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 11,
+      "lastAccessed": 1779755678869,
+      "keyFiles": [
+        "bm_design.md",
+        "development_reference_guide.md",
+        "fun_design.md",
+        "gamegpt_harness_guide.md",
+        "game_compliance_analysis.md"
+      ]
+    },
+    "game": {
+      "path": "game",
+      "purpose": null,
+      "fileCount": 14,
+      "lastAccessed": 1779755678869,
+      "keyFiles": [
+        "analysis_options.yaml",
+        "build.log",
+        "build_output.txt",
+        "build_web.sh",
+        "game.iml"
+      ]
+    },
+    "lib": {
+      "path": "lib",
+      "purpose": "Library code",
+      "fileCount": 0,
+      "lastAccessed": 1779755678869,
+      "keyFiles": []
+    },
+    "libs": {
+      "path": "libs",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1779755678869,
+      "keyFiles": []
+    },
+    "marketing": {
+      "path": "marketing",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1779755678870,
+      "keyFiles": []
+    },
+    "game\\assets": {
+      "path": "game\\assets",
+      "purpose": "Static assets",
+      "fileCount": 1,
+      "lastAccessed": 1779755678871,
+      "keyFiles": []
+    },
+    "lib\\config": {
+      "path": "lib\\config",
+      "purpose": "Configuration files",
+      "fileCount": 2,
+      "lastAccessed": 1779755678872,
+      "keyFiles": [
+        "missions_config.dart",
+        "season2_config.dart"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "game\\test\\design_criteria_e2e_test.dart",
+      "accessCount": 74,
+      "lastAccessed": 1779584753360,
+      "type": "file"
+    },
+    {
+      "path": "game\\test\\game_loop_e2e_test.dart",
+      "accessCount": 70,
+      "lastAccessed": 1779585466926,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\ui\\animated_main_menu.dart",
+      "accessCount": 56,
+      "lastAccessed": 1779597424229,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\main.dart",
+      "accessCount": 42,
+      "lastAccessed": 1779614693187,
+      "type": "directory"
+    },
+    {
+      "path": "game\\test\\colony_gameplay_e2e_test.dart",
+      "accessCount": 41,
+      "lastAccessed": 1779585565805,
+      "type": "file"
+    },
+    {
+      "path": "game\\test\\fun_e2e_test.dart",
+      "accessCount": 28,
+      "lastAccessed": 1779544562999,
+      "type": "file"
+    },
+    {
+      "path": "game\\test\\supercell_style_integration_test.dart",
+      "accessCount": 27,
+      "lastAccessed": 1779585768992,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\ui\\intro_showcase.dart",
+      "accessCount": 22,
+      "lastAccessed": 1779595359230,
+      "type": "file"
+    },
+    {
+      "path": "game\\test\\harness\\gamegpt_harness_test.dart",
+      "accessCount": 21,
+      "lastAccessed": 1779540978004,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\harness\\game_production_harness.dart",
+      "accessCount": 20,
+      "lastAccessed": 1779538763009,
+      "type": "file"
+    },
+    {
+      "path": "game\\integration_test\\fun_e2e_test.dart",
+      "accessCount": 16,
+      "lastAccessed": 1779596346113,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\harness\\code_lexicon.dart",
+      "accessCount": 13,
+      "lastAccessed": 1779520300314,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\supercell_style\\session_loop_manager.dart",
+      "accessCount": 13,
+      "lastAccessed": 1779540667664,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\supercell_style\\reward_progression.dart",
+      "accessCount": 11,
+      "lastAccessed": 1779597011455,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\screens\\colony_screen.dart",
+      "accessCount": 10,
+      "lastAccessed": 1779584372269,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\supercell_style\\session_battle.dart",
+      "accessCount": 10,
+      "lastAccessed": 1779597011313,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\harness\\hallucination_detector.dart",
+      "accessCount": 9,
+      "lastAccessed": 1779538662162,
+      "type": "file"
+    },
+    {
+      "path": "game\\test\\mg0023_production_test.dart",
+      "accessCount": 9,
+      "lastAccessed": 1779540467070,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\core\\meaningful_choice_system.dart",
+      "accessCount": 9,
+      "lastAccessed": 1779540814752,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\core\\game_state.dart",
+      "accessCount": 8,
+      "lastAccessed": 1779517932849,
+      "type": "file"
+    },
+    {
+      "path": "docs\\improvement_completion_report.md",
+      "accessCount": 8,
+      "lastAccessed": 1779538763073,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\core\\weather_system.dart",
+      "accessCount": 8,
+      "lastAccessed": 1779540815175,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib",
+      "accessCount": 8,
+      "lastAccessed": 1779595643359,
+      "type": "directory"
+    },
+    {
+      "path": "game\\test\\tutorial_flow_test.dart",
+      "accessCount": 7,
+      "lastAccessed": 1779585550856,
+      "type": "file"
+    },
+    {
+      "path": "game\\test\\widget_test.dart",
+      "accessCount": 7,
+      "lastAccessed": 1779585562254,
+      "type": "file"
+    },
+    {
+      "path": "game",
+      "accessCount": 6,
+      "lastAccessed": 1779544213846,
+      "type": "directory"
+    },
+    {
+      "path": "game\\lib\\game\\level_design_config.dart",
+      "accessCount": 6,
+      "lastAccessed": 1779596993674,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\supercell_style\\social_competition.dart",
+      "accessCount": 6,
+      "lastAccessed": 1779597011257,
+      "type": "file"
+    },
+    {
+      "path": "game\\test",
+      "accessCount": 4,
+      "lastAccessed": 1779585663569,
+      "type": "directory"
+    },
+    {
+      "path": "game\\lib\\harness\\genre_templates.dart",
+      "accessCount": 3,
+      "lastAccessed": 1779520261521,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\core\\synergy_system.dart",
+      "accessCount": 3,
+      "lastAccessed": 1779539008664,
+      "type": "file"
+    },
+    {
+      "path": "game\\test\\debug_game_test.dart",
+      "accessCount": 3,
+      "lastAccessed": 1779584917994,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\harness",
+      "accessCount": 2,
+      "lastAccessed": 1779520244261,
+      "type": "directory"
+    },
+    {
+      "path": "game\\lib\\mg0023_development_pipeline.dart",
+      "accessCount": 2,
+      "lastAccessed": 1779539969632,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\ui\\colony_visualization.dart",
+      "accessCount": 2,
+      "lastAccessed": 1779540046865,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\ui\\construction_completion_effect.dart",
+      "accessCount": 2,
+      "lastAccessed": 1779540753017,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\game",
+      "accessCount": 2,
+      "lastAccessed": 1779584815587,
+      "type": "directory"
+    },
+    {
+      "path": "game\\test_driver\\gameplay_test.dart",
+      "accessCount": 2,
+      "lastAccessed": 1779596678097,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\USER-5\\AppData\\Local\\Temp\\claude\\D--mg-games-repos-mg-game-0023\\2b6de7d3-a3a4-4a3b-a045-93c2de96a06b\\tasks\\bt5pqt648.output",
+      "accessCount": 2,
+      "lastAccessed": 1779597263265,
+      "type": "file"
+    },
+    {
+      "path": "docs\\supercell_design_philosophy.md",
+      "accessCount": 1,
+      "lastAccessed": 1779519173447,
+      "type": "file"
+    },
+    {
+      "path": "docs\\development_reference_guide.md",
+      "accessCount": 1,
+      "lastAccessed": 1779519316814,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\harness\\task_lexicon.dart",
+      "accessCount": 1,
+      "lastAccessed": 1779520097356,
+      "type": "file"
+    },
+    {
+      "path": "docs\\gamegpt_harness_guide.md",
+      "accessCount": 1,
+      "lastAccessed": 1779520159260,
+      "type": "file"
+    },
+    {
+      "path": "game\\.claude\\skills\\gamegpt-harness.md",
+      "accessCount": 1,
+      "lastAccessed": 1779520343276,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\ui\\crisis_overlay.dart",
+      "accessCount": 1,
+      "lastAccessed": 1779539018753,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\USER-5\\AppData\\Local\\Temp\\claude\\D--mg-games-repos-mg-game-0023\\2b6de7d3-a3a4-4a3b-a045-93c2de96a06b\\tasks\\b3i4u7xz2.output",
+      "accessCount": 1,
+      "lastAccessed": 1779542999829,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\USER-5\\AppData\\Local\\Temp\\claude\\D--mg-games-repos-mg-game-0023\\2b6de7d3-a3a4-4a3b-a045-93c2de96a06b\\tasks\\boh74x6fq.output",
+      "accessCount": 1,
+      "lastAccessed": 1779544209585,
+      "type": "file"
+    },
+    {
+      "path": "game\\game_screenshot.png",
+      "accessCount": 1,
+      "lastAccessed": 1779596594684,
+      "type": "file"
+    },
+    {
+      "path": "game\\lib\\game\\wave_spawn_table.dart",
+      "accessCount": 1,
+      "lastAccessed": 1779596996954,
+      "type": "file"
+    },
+    {
+      "path": "screenshot_screen.png",
+      "accessCount": 1,
+      "lastAccessed": 1779597312732,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

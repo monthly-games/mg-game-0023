@@ -152,8 +152,8 @@ class GameState extends ChangeNotifier {
       _maxResources['research']!,
     );
 
-    // 4. Crisis Check
-    _isCrisis = (_food <= 0 || _water <= 0 || _oxygen <= 0);
+    // 4. Crisis Check - also check energy for complete survival dependency
+    _isCrisis = (_food <= 0 || _water <= 0 || _oxygen <= 0 || _energy <= 0);
 
     // 5. Event Check
     final event = _eventManager.checkForEvents(dt);
@@ -255,6 +255,10 @@ class GameState extends ChangeNotifier {
     } else {
       _buildings = [];
     }
+
+    // Update crisis state after loading
+    _isCrisis = (_food <= 0 || _water <= 0 || _oxygen <= 0 || _energy <= 0);
+
     notifyListeners();
   }
 }

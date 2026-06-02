@@ -5,7 +5,7 @@ import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 import 'package:mg_common_game/core/ui/layout/mg_spacing.dart';
 import 'package:mg_common_game/core/ui/typography/mg_text_styles.dart';
 import 'package:mg_common_game/core/ui/widgets/buttons/mg_button.dart';
-import 'package:mg_common_game/core/ui/widgets/progress/mg_progress.dart';import 'package:mg_common_game/l10n/localization.dart';
+import 'package:mg_common_game/core/ui/widgets/progress/mg_progress.dart';
 
 
 /// MG-0023 Colony Frontier HUD
@@ -340,6 +340,7 @@ class MGColonyHud extends StatelessWidget {
   }
 
 
+  // ignore: unused_element
   Widget _buildSpineCharacter() {
     return GestureDetector(
       onTap: () {

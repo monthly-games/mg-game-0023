@@ -13,7 +13,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mg_common_game/core/ui/mg_ui.dart';
-import 'package:mg_common_game/systems/quests/daily_quest.dart';
+import 'package:mg_common_game/systems/quests/daily_quest_v2.dart';
 
 /// Daily Quest screen for MG-0023 Colony Frontier.
 ///
@@ -27,14 +27,14 @@ class DailyQuestScreen extends StatefulWidget {
 }
 
 class _DailyQuestScreenState extends State<DailyQuestScreen> {
-  late final DailyQuestManager _questManager;
+  late final DailyQuestManagerV2 _questManager;
   late Timer _resetTimer;
   Duration _timeUntilReset = Duration.zero;
 
   @override
   void initState() {
     super.initState();
-    _questManager = GetIt.I<DailyQuestManager>();
+    _questManager = GetIt.I<DailyQuestManagerV2>();
     _questManager.addListener(_onQuestUpdate);
     _questManager.checkAndResetIfNeeded();
     _startResetTimer();
@@ -76,7 +76,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
     return '$hours:$minutes:$seconds';
   }
 
-  void _claimReward(DailyQuest quest) {
+  void _claimReward(DailyQuestV2 quest) {
     _questManager.claimQuestReward(quest.id);
   }
 
@@ -136,7 +136,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
   }
 
   Widget _buildQuestList(
-    List<DailyQuest> quests,
+    List<DailyQuestV2> quests,
     int completedCount,
     int totalCount,
   ) {
@@ -227,7 +227,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
     );
   }
 
-  Widget _buildQuestCard(DailyQuest quest) {
+  Widget _buildQuestCard(DailyQuestV2 quest) {
     final isClaimable = quest.isCompleted && !quest.isClaimedReward;
     final isClaimed = quest.isClaimedReward;
 
@@ -346,7 +346,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
     );
   }
 
-  Widget _buildRewardBadge(DailyQuest quest) {
+  Widget _buildRewardBadge(DailyQuestV2 quest) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -360,7 +360,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
             ),
             MGSpacing.hXxs,
             Text(
-              '${quest.goldReward}',
+              '${quest.baseGoldReward}',
               style: MGTextStyles.hudSmall.copyWith(
                 color: MGColors.gold,
               ),
@@ -378,7 +378,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
             ),
             MGSpacing.hXxs,
             Text(
-              '${quest.xpReward} XP',
+              '${quest.baseXpReward} XP',
               style: MGTextStyles.hudSmall.copyWith(
                 color: MGColors.exp,
               ),

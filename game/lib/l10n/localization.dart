@@ -4,14 +4,14 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   static AppLocalizations of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context)!;
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
   const AppLocalizations();
 
-  String get ui_general_battle_pass => 'Battle Pass';
-  String get ui_general_tower_summon => 'Tower Summon';
-  String get notification_claim_all__bpunclaimedrewardcount => 'Unclaimed Rewards';
+  String get uiGeneralBattlePass => 'Battle Pass';
+  String get uiGeneralTowerSummon => 'Tower Summon';
+  String get notificationClaimAllBpUnclaimedRewardCount => 'Unclaimed Rewards';
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

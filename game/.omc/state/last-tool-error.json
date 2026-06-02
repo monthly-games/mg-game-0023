@@ -1,0 +1,7 @@
+{
+  "tool_name": "Read",
+  "tool_input_preview": "{\"file_path\":\"D:\\\\mg-games\\\\repos\\\\mg-game-0023\\\\game\\\\improved_game_01.png\"}",
+  "error": "Unable to resize image — dimensions exceed the 2000x2000px limit and image processing failed. Please resize the image to reduce its pixel dimensions.",
+  "timestamp": "2026-05-28T14:39:09.498Z",
+  "retry_count": 1
+}

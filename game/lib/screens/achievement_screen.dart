@@ -1,5 +1,4 @@
 // ignore_for_file: depend_on_referenced_packages
-import 'package:mg_common_game/core/localization/localization.dart';
 // ============================================================
 // Achievement Screen -- MG-0023 Colony Frontier
 // Genre: Crossgame / Raid / Event · Retention System UI

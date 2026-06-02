@@ -6,14 +6,19 @@ import 'package:provider/provider.dart';
 import 'package:flame_audio/flame_audio.dart';
 import '../core/game_state.dart';
 import '../core/persistence_manager.dart';
+import '../core/synergy_system.dart';
+import '../core/weather_system.dart';
+import '../core/meaningful_choice_system.dart';
 import '../models/building_model.dart';
 import '../ui/resource_view.dart';
 import '../ui/sprite_clipper.dart';
+import '../ui/crisis_overlay.dart';
+import '../ui/colony_visualization.dart';
+import '../ui/level_up_showcase.dart';
 import 'battlepass_screen.dart';
 import 'gacha_screen.dart';
 import 'research_screen.dart';
-import 'package:mg_common_game/core/ui/theme/mg_colors.dart';import 'package:mg_common_game/l10n/localization.dart';
-
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 class ColonyScreen extends StatefulWidget {
   const ColonyScreen({super.key});
@@ -25,29 +30,74 @@ class ColonyScreen extends StatefulWidget {
 class _ColonyScreenState extends State<ColonyScreen> {
   Timer? _gameLoop;
 
+  // 시스템들
+  late WeatherSystem _weatherSystem;
+  late MeaningfulChoiceSystem _choiceSystem;
+  final List<ConstructionCompletionEffectData> _completionEffects = [];
+
+  // 화면 표시 상태
+  bool _showLevelUp = false;
+  int _currentLevel = 1;
+
   @override
   void initState() {
     super.initState();
-    // Start Game Loop (10 ticks per second for smoothness)
+
+    // 시스템 초기화
+    _weatherSystem = WeatherSystem()..start();
+    _choiceSystem = MeaningfulChoiceSystem()..start();
+
+    // 게임 루프 시작 (10 ticks per second)
     _gameLoop = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      context.read<GameState>().update(0.1);
+      final gameState = context.read<GameState>();
+
+      // 기본 업데이트
+      gameState.update(0.1);
+
+      // 날씨 효과 적용
+      _weatherSystem.applyWeatherEffects(gameState);
+      _weatherSystem.applyActiveEvents(gameState);
+
+      // 레벨업 체크 (간단 구현)
+      _checkLevelUp(gameState);
     });
 
-    // Play BGM
+    // BGM 재생
     FlameAudio.bgm.play('bgm_colony.mp3', volume: 0.3);
+  }
+
+  void _checkLevelUp(GameState gameState) {
+    // 간단한 레벨업 로직 (연구 포인트 기반)
+    final newLevel = 1 + (gameState.research / 50).floor();
+    if (newLevel > _currentLevel && newLevel <= 8) {
+      setState(() {
+        _currentLevel = newLevel;
+        _showLevelUp = true;
+      });
+
+      // 3초 후 레벨업 화면 닫기
+      Future.delayed(const Duration(milliseconds: 2500), () {
+        if (mounted) {
+          setState(() => _showLevelUp = false);
+        }
+      });
+    }
   }
 
   @override
   void dispose() {
     _gameLoop?.cancel();
+    _weatherSystem.dispose();
+    _choiceSystem.dispose();
     FlameAudio.bgm.stop();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Check for events to display
     final gameState = context.watch<GameState>();
+
+    // 이벤트 메시지 표시
     if (gameState.lastEventMessage != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -61,10 +111,24 @@ class _ColonyScreenState extends State<ColonyScreen> {
       });
     }
 
+    // 레벨업 오버레이
+    if (_showLevelUp) {
+      return Scaffold(
+        body: LevelUpShowcase(
+          newLevel: _currentLevel,
+          goldReward: 50 + (_currentLevel * 30),
+          xpReward: 20 + (_currentLevel * 10),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('ui_general_colony_frontier'.tr),
         actions: [
+          // 날씨 표시
+          _WeatherIndicator(weatherSystem: _weatherSystem),
+          const SizedBox(width: 8),
           IconButton(
             icon: const Icon(Icons.military_tech),
             tooltip: 'BattlePass',
@@ -91,20 +155,17 @@ class _ColonyScreenState extends State<ColonyScreen> {
           IconButton(
             icon: const Icon(Icons.shield),
             tooltip: 'Guild War',
-            onPressed: () =>
-                Navigator.of(context).pushNamed('/guild-war'),
+            onPressed: () => Navigator.of(context).pushNamed('/guild-war'),
           ),
           IconButton(
             icon: const Icon(Icons.emoji_events),
             tooltip: 'Tournament',
-            onPressed: () =>
-                Navigator.of(context).pushNamed('/tournament'),
+            onPressed: () => Navigator.of(context).pushNamed('/tournament'),
           ),
           IconButton(
             icon: const Icon(Icons.celebration),
             tooltip: 'Seasonal Event',
-            onPressed: () =>
-                Navigator.of(context).pushNamed('/seasonal-event'),
+            onPressed: () => Navigator.of(context).pushNamed('/seasonal-event'),
           ),
           IconButton(
             icon: const Icon(Icons.settings),
@@ -112,40 +173,42 @@ class _ColonyScreenState extends State<ColonyScreen> {
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          // Background
-          Positioned.fill(
-            child: Image.asset(
-              'assets/images/bg_space.png',
-              fit: BoxFit.cover,
-              repeat: ImageRepeat.repeat,
-            ),
-          ),
-          // Content
-          SafeArea(
-            child: Column(
-              children: [
-                const ResourceView(),
-                if (context.watch<GameState>().isCrisis)
-                  Container(
-                    color: MGColors.error.withValues(alpha: 0.8),
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(MGSpacing.xs),
-                    child: const Text(
-                      'CRITICAL ALERT: VITAL RESOURCES DEPLETED!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: MGColors.textHighEmphasis,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+      body: _ConstructionEffectOverlay(
+        effects: _completionEffects,
+        child: CrisisOverlay(
+          isCrisis: gameState.isCrisis,
+          child: Stack(
+            children: [
+              // 배경
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/images/bg_space.png',
+                  fit: BoxFit.cover,
+                  repeat: ImageRepeat.repeat,
+                ),
+              ),
+              // 콜로니 라이프 오버레이 (콜로니스트 시각화)
+              ColonyLifeOverlay(
+                population: gameState.population,
+                buildingCount: gameState.buildings.length,
+                child: SafeArea(
+                  child: Column(
+                    children: [
+                      const ResourceView(),
+                      // 의미 있는 선택 알림
+                      if (_choiceSystem.activeChoices.isNotEmpty)
+                        _ChoiceBanner(
+                          choiceSystem: _choiceSystem,
+                          gameState: gameState,
+                        ),
+                      Expanded(child: _ColonyGrid()),
+                    ],
                   ),
-                Expanded(child: _ColonyGrid()),
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showBuildMenu(context),
@@ -155,7 +218,33 @@ class _ColonyScreenState extends State<ColonyScreen> {
   }
 
   void _showBuildMenu(BuildContext context) {
-    showModalBottomSheet(context: context, builder: (context) => _BuildMenu());
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => _BuildMenu(onBuildingBuilt: (name) {
+        _showConstructionEffect(name);
+      }),
+    );
+  }
+
+  void _showConstructionEffect(String buildingName) {
+    setState(() {
+      _completionEffects.add(
+        ConstructionCompletionEffectData(
+          buildingName: buildingName,
+          position: const Offset(200, 300),
+          timestamp: DateTime.now(),
+        ),
+      );
+    });
+
+    // 2초 후 제거
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      if (mounted) {
+        setState(() {
+          _completionEffects.clear();
+        });
+      }
+    });
   }
 
   void _showSettings(BuildContext context) {
@@ -174,7 +263,9 @@ class _ColonyScreenState extends State<ColonyScreen> {
                 final manager = PersistenceManager();
                 await manager.saveGame(state);
                 if (mounted) {
-                  messenger.showSnackBar(const SnackBar(content: Text('ui_general_game_saved'.tr)));
+                  messenger.showSnackBar(
+                    SnackBar(content: Text('ui_general_game_saved'.tr)),
+                  );
                 }
               },
               child: Text('ui_general_save_game'.tr),
@@ -186,7 +277,7 @@ class _ColonyScreenState extends State<ColonyScreen> {
                 final state = context.read<GameState>();
                 final messenger = ScaffoldMessenger.of(context);
                 final manager = PersistenceManager();
-                bool success = await manager.loadGame(state);
+                final success = await manager.loadGame(state);
                 if (mounted) {
                   messenger.showSnackBar(
                     SnackBar(
@@ -211,6 +302,8 @@ class _ColonyScreenState extends State<ColonyScreen> {
 }
 
 class _ColonyGrid extends StatelessWidget {
+  const _ColonyGrid();
+
   @override
   Widget build(BuildContext context) {
     final buildings = context.watch<GameState>().buildings;
@@ -235,23 +328,55 @@ class _ColonyGrid extends StatelessWidget {
       itemCount: buildings.length,
       itemBuilder: (context, index) {
         final building = buildings[index];
+        final synergy = SynergySystem.calculateSynergy(building, buildings);
+
         return Card(
-          color: Colors.black54, // Transparent dark
+          color: Colors.black54,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
-            side: const BorderSide(color: Colors.blueAccent, width: 1),
+            side: BorderSide(
+              color: synergy.totalBonus > 1.0
+                  ? Colors.amber
+                  : Colors.blueAccent,
+              width: synergy.totalBonus > 1.0 ? 2 : 1,
+            ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
             children: [
-              // Sprite Logic
-              _buildBuildingSprite(building.type, building.id),
-              const SizedBox(height: MGSpacing.xxs),
-              Text(
-                building.name,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 10, color: MGColors.textHighEmphasis),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildBuildingSprite(building.type, building.id),
+                  const SizedBox(height: MGSpacing.xxs),
+                  Text(
+                    building.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 10,
+                      color: MGColors.textHighEmphasis,
+                    ),
+                  ),
+                  // 시너지 보너스 표시
+                  if (synergy.totalBonus > 1.0)
+                    Text(
+                      '+${((synergy.totalBonus - 1) * 100).toInt()}%',
+                      style: TextStyle(
+                        fontSize: 8,
+                        color: Colors.amber,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                ],
               ),
+              // 작업 표시
+              if (building.production.isNotEmpty)
+                Positioned.fill(
+                  child: BuildingWorkIndicator(
+                    buildingType: building.type,
+                    isProducing: true,
+                    productionRate: 1.0,
+                  ),
+                ),
             ],
           ),
         );
@@ -287,6 +412,10 @@ class _ColonyGrid extends StatelessWidget {
 }
 
 class _BuildMenu extends StatelessWidget {
+  final Function(String) onBuildingBuilt;
+
+  const _BuildMenu({required this.onBuildingBuilt});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -307,14 +436,18 @@ class _BuildMenu extends StatelessWidget {
             trailing: Text('ui_general_free_proto'.tr),
             onTap: () {
               FlameAudio.play('sfx_build.wav');
-              context.read<GameState>().addBuilding(
-                const Building(
-                  id: 'solar', // Unique ID logic needed later
-                  name: 'Solar Panel',
-                  type: 'Energy',
-                  production: {'energy': 1.0},
-                ),
+              const building = Building(
+                id: 'solar',
+                name: 'Solar Panel',
+                type: 'Energy',
+                production: {'energy': 1.0},
               );
+
+              context.read<GameState>().addBuilding(building);
+
+              // 완료 효과 표시
+              onBuildingBuilt('Solar Panel');
+
               Navigator.pop(context);
             },
           ),
@@ -334,6 +467,7 @@ class _BuildMenu extends StatelessWidget {
                   production: {'water': 1.0},
                 ),
               );
+              onBuildingBuilt('Water Extractor');
               Navigator.pop(context);
             },
           ),
@@ -358,6 +492,7 @@ class _BuildMenu extends StatelessWidget {
                   },
                 ),
               );
+              onBuildingBuilt('Small Warehouse');
               Navigator.pop(context);
             },
           ),
@@ -376,12 +511,11 @@ class _BuildMenu extends StatelessWidget {
                   production: {'research': 1.0},
                 ),
               );
+              onBuildingBuilt('Research Lab');
               Navigator.pop(context);
             },
           ),
-          if (context.read<GameState>().unlockedTechs.contains(
-            'tech_adv_power',
-          ))
+          if (context.read<GameState>().unlockedTechs.contains('tech_adv_power'))
             ListTile(
               leading: const Icon(Icons.flash_on, color: MGColors.warning),
               title: Text('ui_general_nuclear_reactor'.tr),
@@ -396,15 +530,13 @@ class _BuildMenu extends StatelessWidget {
                     production: {'energy': 50.0},
                   ),
                 );
+                onBuildingBuilt('Nuclear Reactor');
                 Navigator.pop(context);
               },
             ),
           if (context.read<GameState>().unlockedTechs.contains('tech_hydro'))
             ListTile(
-              leading: const Icon(
-                Icons.local_florist,
-                color: Colors.greenAccent,
-              ),
+              leading: const Icon(Icons.local_florist, color: Colors.greenAccent),
               title: Text('ui_general_hydroponics_farm'.tr),
               subtitle: Text('ui_general_produces_1_foods'.tr),
               trailing: const Text('Tech'),
@@ -418,10 +550,296 @@ class _BuildMenu extends StatelessWidget {
                     production: {'food': 1.0},
                   ),
                 );
+                onBuildingBuilt('Hydroponics Farm');
                 Navigator.pop(context);
               },
             ),
         ],
+      ),
+    );
+  }
+}
+
+/// 건설 완료 효과 데이터
+class ConstructionCompletionEffectData {
+  final String buildingName;
+  final Offset position;
+  final DateTime timestamp;
+
+  ConstructionCompletionEffectData({
+    required this.buildingName,
+    required this.position,
+    required this.timestamp,
+  });
+}
+
+/// 간단한 건설 완료 효과 오버레이
+class _ConstructionEffectOverlay extends StatefulWidget {
+  final Widget child;
+  final List<ConstructionCompletionEffectData> effects;
+
+  const _ConstructionEffectOverlay({
+    required this.child,
+    required this.effects,
+  });
+
+  @override
+  State<_ConstructionEffectOverlay> createState() =>
+      _ConstructionEffectOverlayState();
+}
+
+class _ConstructionEffectOverlayState extends State<_ConstructionEffectOverlay>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        widget.child,
+        ...widget.effects.map((effect) => _buildEffect(effect)),
+      ],
+    );
+  }
+
+  Widget _buildEffect(ConstructionCompletionEffectData effect) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        final progress = _controller.value;
+        final opacity = progress < 0.8 ? progress / 0.8 : 1 - ((progress - 0.8) / 0.2);
+        final scale = progress < 0.3 ? progress / 0.3 : 1.0;
+
+        return Positioned(
+          left: effect.position.dx - 60,
+          top: effect.position.dy - 60,
+          child: Opacity(
+            opacity: opacity,
+            child: Transform.scale(
+              scale: scale,
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFFFD700), Color(0xFFFFA500)],
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.white, width: 2),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.check_circle, color: Colors.white),
+                    const SizedBox(height: 4),
+                    Text(
+                      'COMPLETE!',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      effect.buildingName,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _WeatherIndicator extends StatelessWidget {
+  final WeatherSystem weatherSystem;
+
+  const _WeatherIndicator({required this.weatherSystem});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(_getWeatherIcon(), size: 16, color: _getWeatherColor()),
+          const SizedBox(width: 4),
+          Text(
+            _getWeatherName(),
+            style: TextStyle(
+              color: _getWeatherColor(),
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  IconData _getWeatherIcon() {
+    switch (weatherSystem.currentWeather) {
+      case WeatherType.clear:
+        return Icons.wb_sunny;
+      case WeatherType.solarFlare:
+        return Icons.flare;
+      case WeatherType.dustStorm:
+        return Icons.air;
+      case WeatherType.meteorShower:
+        return Icons.star;
+      case WeatherType.cosmicStorm:
+        return Icons.thunderstorm;
+    }
+  }
+
+  Color _getWeatherColor() {
+    switch (weatherSystem.currentWeather) {
+      case WeatherType.clear:
+        return Colors.yellow;
+      case WeatherType.solarFlare:
+        return Colors.orange;
+      case WeatherType.dustStorm:
+        return Colors.brown;
+      case WeatherType.meteorShower:
+        return Colors.purple;
+      case WeatherType.cosmicStorm:
+        return Colors.red;
+    }
+  }
+
+  String _getWeatherName() {
+    switch (weatherSystem.currentWeather) {
+      case WeatherType.clear:
+        return 'Clear';
+      case WeatherType.solarFlare:
+        return 'Solar Flare';
+      case WeatherType.dustStorm:
+        return 'Dust Storm';
+      case WeatherType.meteorShower:
+        return 'Meteor Shower';
+      case WeatherType.cosmicStorm:
+        return 'Cosmic Storm';
+    }
+  }
+}
+
+class _ChoiceBanner extends StatelessWidget {
+  final MeaningfulChoiceSystem choiceSystem;
+  final GameState gameState;
+
+  const _ChoiceBanner({
+    required this.choiceSystem,
+    required this.gameState,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final choice = choiceSystem.activeChoices.firstOrNull;
+    if (choice == null || choice.isExpired) return const SizedBox.shrink();
+
+    return Container(
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+        ),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.white, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.psychology, color: Colors.white),
+              const SizedBox(width: 8),
+              Text(
+                choice.title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                '${choice.duration.inSeconds}s',
+                style: TextStyle(
+                  color: Colors.white.withValues(alpha: 0.7),
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            choice.description,
+            style: TextStyle(
+              color: Colors.white.withValues(alpha: 0.9),
+              fontSize: 12,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            children: choice.options.asMap().entries.map((entry) {
+              final index = entry.key;
+              final option = entry.value;
+              return ElevatedButton(
+                onPressed: () => _makeChoice(context, choice.id, index),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: const Color(0xFF6366F1),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                ),
+                child: Text(option.title),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _makeChoice(BuildContext context, String choiceId, int optionIndex) {
+    final result = choiceSystem.makeChoice(choiceId, optionIndex);
+    gameState.applyEventEffect(result);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Choice made: ${result.entries.map((e) => '${e.key}:${e.value}').join(', ')}'),
+        backgroundColor: const Color(0xFF6366F1),
       ),
     );
   }

@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd D:/mg-games/repos/mg-game-0023/game && flutter screenshot --device-timeout=10 --output=../docs/images/final_complete.png\",\"timeout\":30000,\"description\":\"Use flutter screenshot command\"}",
+  "error": "Exit code 64\nCould not find an option named \"--output\".\n\nRun 'flutter -h' (or 'flutter <command> -h') for available flutter commands and options.",
+  "timestamp": "2026-05-26T00:41:51.341Z",
+  "retry_count": 6
+}
